@@ -15,7 +15,6 @@ const questionGenerator = async () => {
             text: prompt,
         },
     }).then((result) => {
-        console.log(JSON.stringify(result, null, 2));
         return result;
     });
 };

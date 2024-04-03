@@ -1,9 +1,10 @@
-const DBController = require('express').Router();
+const dbController = require('express').Router();
 const Question = require('../models/question');
 
-// DBController.get('/', async (req, res) => {
-//     const questions = await Question.find({});
-//     res.json(questions);
-// });
+// using questionsDB.questionscollections
+dbController.get('/', async (req, res) => {
+    const questions = await Question.find({});
+    res.json(questions);
+});
 
-module.exports = DBController;
+module.exports = dbController;
