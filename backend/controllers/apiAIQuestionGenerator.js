@@ -8,7 +8,7 @@ const questionGenerator = async () => {
     authClient: new GoogleAuth().fromAPIKey(config.API_KEY),
   });
   const prompt =
-    'Generate Who wants to be a millionaire question with one correct and three incorrect answers in the following JSON format { "_id": { "$oid": "660e12020e15d9f3a1b2addd" }, "question": "Your question here?", "answers": [ { "text": "Answer 1", "correct": false }, { "text": "Answer 2", "correct": false }, { "text": "Correct Answer", "correct": true }, { "text": "Answer 4", "correct": false } ], "difficulty": { "$numberInt": "X" } }';
+    'Generate a question that is related to mathematics with one correct and three incorrect answers in the following JSON format { "question": "Your question here?", "answers": [ { "text": "Answer 1", "correct": false }, { "text": "Answer 2", "correct": false }, { "text": "Correct Answer", "correct": true }, { "text": "Answer 4", "correct": false } ] }';
   // Return the promise from the client.generateText call
   return client
     .generateText({
@@ -18,7 +18,10 @@ const questionGenerator = async () => {
       },
     })
     .then((result) => {
-      return result;
+      const output = result[0]?.candidates[0]?.output;
+      const jsonContent = output.replace(/^```json\s*|\s*```$/g, '');
+      const jsonObject = JSON.parse(jsonContent);
+      return jsonObject;
     });
 };
 
