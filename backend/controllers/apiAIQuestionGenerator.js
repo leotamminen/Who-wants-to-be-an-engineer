@@ -40,8 +40,8 @@ const questionGenerator = async () => {
   const client = new TextServiceClient({
     authClient: new GoogleAuth().fromAPIKey(config.API_KEY),
   });
-  // Get random category from categories list (Math.random() * size of list)
-  const category = categories[Math.floor(Math.random() * 30)];
+  // Get random category from categories list
+  const category = categories[Math.floor(Math.random() * categories.length)];
   const prompt =
     `Generate a question that is related to ${category} with one correct and three incorrect answers in the following JSON format { "question": "Your question here?", "answers": [ { "text": "Answer 1", "correct": false }, { "text": "Answer 2", "correct": false }, { "text": "Correct Answer", "correct": true }, { "text": "Answer 4", "correct": false } ] }`;
   // Return the promise from the client.generateText call
