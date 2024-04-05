@@ -111,7 +111,7 @@ const Quiz = ({
   const handleLockIn = () => {
     if (!selectedAnswer) {
       // Can not lock in if answer is not selected
-      alert("Et voi lukita vastausta jos sitä ei ole valittu!");
+      alert("You cant lock an answer if its not selected!");
       console.log("Select answer before locking in!");
     } else {
       if (!answersLocked) {
