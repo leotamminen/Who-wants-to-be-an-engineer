@@ -6,7 +6,7 @@ APIController.get("/", async (req, res) => {
   try {
     // Call questionGenerator method from QuestionGenerator class
     const result = await QuestionGenerator.questionGenerator();
-    res.send(result.candidates.output);
+    res.json(result);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
