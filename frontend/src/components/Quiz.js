@@ -31,7 +31,6 @@ const Quiz = ({
     // TODO: add correct/incorrect sounds, maybe lock in answer
   };
 
-
   const playAudio = (audioRef) => {
     document.addEventListener("click", function playAudioOnInteraction() {
       Object.values(audioRefs).forEach((ref) => {
@@ -40,10 +39,10 @@ const Quiz = ({
           ref.current.currentTime = 0;
         }
       });
-  
+
       audioRef.current.loop = true;
       audioRef.current.play();
-  
+
       document.removeEventListener("click", playAudioOnInteraction);
     });
   };
