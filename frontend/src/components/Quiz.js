@@ -8,13 +8,13 @@ import fifteen from "../assets/fifteen.mp3";
 import millionaireRave from "../assets/MillionaireRave.mp3";
 
 const Quiz = ({
-  questions,
+  question,
   questionNumber,
   setQuestionNumber,
   setTimeOut,
   handleBecomeMillionaire,
 }) => {
-  const [question, setQuestion] = useState(null);
+  // const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState("answer");
   const [answersLocked, setAnswersLocked] = useState(false);
@@ -77,9 +77,9 @@ const Quiz = ({
   }, [questionNumber]);
 
   // Update the current question when the question number changes
-  useEffect(() => {
-    setQuestion(questions[questionNumber - 1]);
-  }, [questions, questionNumber]);
+  // useEffect(() => {
+  //   setQuestion(questions[questionNumber - 1]);
+  // }, [questions, questionNumber]);
 
   // Delays the execution of a callback function for any given time
   const delay = (duration, callBack) => {

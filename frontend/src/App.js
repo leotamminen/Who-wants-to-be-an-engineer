@@ -4,8 +4,11 @@ import GameOver from "./components/GameOver";
 import GameWinner from "./components/GameWinner";
 import Quiz from "./components/Quiz";
 import Timer from "./components/Timer";
-import { questions, prizeSums } from "./questions";
+import { prizeSums } from "./questions";
 import Start from "./components/Start";
+
+import apiQuestionService from './services/apiQuestionService';
+import dbQuestionService from "./services/dbQuestionService";
 
 function App() {
   const [name, setName] = useState(null);
@@ -14,6 +17,7 @@ function App() {
   const [answersLocked, setAnswersLocked] = useState(false);
   const [isMillionaire, setIsMillionaire] = useState(false);
   const [earnedMoney, setEarnedMoney] = useState("0 €");
+  const [question, setQuestion] = useState(null);
 
   // Update earned money when the question number changes
   useEffect(() => {
@@ -22,6 +26,19 @@ function App() {
       setEarnedMoney(
         prizeSums.find((item) => item.id === questionNumber - 1).amount
       );
+    apiQuestionService.getQuestion()
+        .then(apiQuestion => {
+          if (apiQuestion) {
+            console.log("api kysymys");
+            setQuestion(apiQuestion);
+          } else {
+            console.log("db kysymys");
+            dbQuestionService.getQuestion(questionNumber)
+            .then(dbQuestion =>
+              setQuestion(dbQuestion)
+            );
+          }
+        });
   }, [questionNumber]);
 
   // Define a function to update isMillionaire state
@@ -51,7 +68,7 @@ function App() {
                 <GameWinner className="game-over" />
               ) : (
                 <Quiz
-                  questions={questions}
+                  question={question}
                   questionNumber={questionNumber}
                   setQuestionNumber={setQuestionNumber}
                   setTimeOut={setTimeOut}
