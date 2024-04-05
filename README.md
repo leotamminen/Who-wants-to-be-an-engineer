@@ -1,6 +1,6 @@
 # Who Wants to Be an Engineer
-[test version](https://vercel.com/leo-tamminens-projects/who-wants-to-be-an-engineer-test)
-[main version](https://vercel.com/leo-tamminens-projects/who-wants-to-be-an-engineer)
+[test version](https://who-wants-to-be-an-engineer-test.vercel.app/)
+[main version](https://who-wants-to-be-an-engineer.vercel.app/)
 
 ## Overview
 
