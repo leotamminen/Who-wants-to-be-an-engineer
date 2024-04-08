@@ -61,7 +61,11 @@ function App() {
             </div>
             <div className="game">
               {timeOut ? (
-                <GameOver className="game-over" earnedMoney={earnedMoney} />
+                <GameOver
+                  className="game-over"
+                  earnedMoney={earnedMoney}
+                  name={name}
+                />
               ) : isMillionaire ? (
                 <GameWinner className="game-over" />
               ) : (

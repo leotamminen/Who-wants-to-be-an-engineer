@@ -7,7 +7,6 @@ function GameOver({ className, earnedMoney, name }) {
     window.location.reload();
   };
 
-  // Displays "name earned earnedMoney"
   return (
     <div className={className}>
       <h1>Game Over</h1>
