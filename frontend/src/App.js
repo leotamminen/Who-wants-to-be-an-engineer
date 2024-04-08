@@ -18,6 +18,7 @@ function App() {
   const [isMillionaire, setIsMillionaire] = useState(false);
   const [earnedMoney, setEarnedMoney] = useState("0 €");
   const [question, setQuestion] = useState(null);
+  const [nextQuestion, setNextQuestion] = useState(null);
 
   // Update earned money when the question number changes
   useEffect(() => {
@@ -26,6 +27,9 @@ function App() {
       setEarnedMoney(
         prizeSums.find((item) => item.id === questionNumber - 1).amount
       );
+  }, [questionNumber]);
+
+  useEffect(() => {
     apiQuestionService.getQuestion().then((apiQuestion) => {
       if (apiQuestion) {
         console.log("api kysymys");
@@ -34,10 +38,12 @@ function App() {
         console.log("db kysymys");
         dbQuestionService
           .getQuestion(questionNumber)
-          .then((dbQuestion) => setQuestion(dbQuestion));
+          .then((dbQuestion) => {
+            setQuestion(dbQuestion);
+          });
       }
     });
-  }, [questionNumber]);
+  }, []);
 
   // Define a function to update isMillionaire state
   const handleBecomeMillionaire = () => {
@@ -71,6 +77,9 @@ function App() {
               ) : (
                 <Quiz
                   question={question}
+                  setQuestion={setQuestion}
+                  nextQuestion={nextQuestion}
+                  setNextQuestion={setNextQuestion}
                   questionNumber={questionNumber}
                   setQuestionNumber={setQuestionNumber}
                   setTimeOut={setTimeOut}

@@ -6,9 +6,14 @@ import elevenToThirteen from "../assets/eleven-thirteen.mp3";
 import fourteen from "../assets/fourteen.mp3";
 import fifteen from "../assets/fifteen.mp3";
 import millionaireRave from "../assets/MillionaireRave.mp3";
+import apiQuestionService from "../services/apiQuestionService";
+import dbQuestionService from "../services/dbQuestionService";
 
 const Quiz = ({
   question,
+  setQuestion,
+  nextQuestion,
+  setNextQuestion,
   questionNumber,
   setQuestionNumber,
   setTimeOut,
@@ -76,6 +81,27 @@ const Quiz = ({
     }
   }, [questionNumber]);
 
+  useEffect(() => {
+    const fetchNextQuestion = async () => {
+      const apiQuestion = await apiQuestionService.getQuestion(); // Fetch the next question from API
+      if (apiQuestion) {
+        console.log("api kysymys");
+        setNextQuestion(apiQuestion); // Set the next question
+      } else {
+        console.log("db kysymys");
+        const dbQuestion = await dbQuestionService.getQuestion(questionNumber + 1); // Fetch the next question from database
+        if (dbQuestion) {
+          setNextQuestion(dbQuestion); // Set the next question
+        } else {
+          console.log("shitty situation");
+          // get question from question.js
+        }
+      }
+    };
+
+    fetchNextQuestion();
+  }, [questionNumber]);
+
   // Update the current question when the question number changes
   // useEffect(() => {
   //   setQuestion(questions[questionNumber - 1]);
@@ -130,6 +156,7 @@ const Quiz = ({
             // If the locked-in answer is correct, move to the next question after 1 sec
             if (selectedAnswer.correct) {
               delay(1000, () => {
+                setQuestion(nextQuestion);
                 setQuestionNumber((prev) => prev + 1);
                 setSelectedAnswer(null);
                 setClassName("answer");
