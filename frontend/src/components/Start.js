@@ -6,7 +6,22 @@ const Start = ({ setName, setTimeOut }) => {
 
   const handleClick = () => {
     setTimeOut(false);
-    inputRef.current.value && setName(inputRef.current.value);
+    const nameInput = inputRef.current.value.trim(); // Trim any extra spaces from name
+    if (!nameInput) {
+      alert("Please input a name first");
+      inputRef.current.value = ""; // Clear input box if it is empty or just spaces
+    } else {
+      setName(nameInput);
+      // consolelog name
+      console.log("Name is:", nameInput);
+    }
+  };
+
+  // Function for enter key press
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      handleClick();
+    }
   };
 
   return (
@@ -18,6 +33,7 @@ const Start = ({ setName, setTimeOut }) => {
           placeholder="Engineer candidate name"
           ref={inputRef}
           className="username-box"
+          onKeyDown={handleKeyPress} // This makes sure enter key works also
         />
         <button className="username-button" onClick={handleClick}>
           Let's start!
