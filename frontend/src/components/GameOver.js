@@ -20,7 +20,7 @@ function GameOver({ className, earnedMoney }) {
         >
           here
         </span>{" "}
-        or by reloafing the page.
+        or by refreshing the page.
       </p>
     </div>
   );
