@@ -1,4 +1,250 @@
 * {
-  font-family: 'Fredericka the Great';
-  overflow: hidden;
+  font-family: "Roboto";
+  color: #fff;
+  margin: 1px;
+}
+
+body {
+  background-color: #13075a;
+}
+
+h1 {
+  text-transform: capitalize;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+}
+
+.game-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.money-container {
+  max-width: 25%;
+  padding-top: 15px;
+  padding-left: 1px;
+}
+
+.money-list {
+  background-color: black;
+  padding: 25px;
+  border-radius: 10px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-wrap: nowrap;
+}
+
+.timer-container {
+  flex: 1;
+  max-height: 120px;
+}
+
+.timer {
+  left: 15px;
+  top: 15px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: 35px;
+  font-weight: 500;
+}
+
+.quiz {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question {
+  max-width: 1000px;
+  width: 85%;
+  background: linear-gradient(#1a0591, #0c0231);
+  text-align: center;
+  padding: 20px;
+
+  border-radius: 10px;
+  border: 2px solid #fff;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.answers {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.answer {
+  width: 40%;
+  min-width: 200px;
+  padding: 10px;
+  margin: 15px;
+  text-align: center;
+  background: linear-gradient(#110447, #091270);
+  border: 1px solid #fff;
+  border-radius: 60px;
+  font-weight: 300;
+  font-size: 20px;
+  cursor: pointer;
+  text-wrap: wrap;
+}
+
+.answer:hover,
+.answer.active {
+  background: #ca6608;
+  box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
+}
+
+.answer.correct {
+  animation: correct 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes correct {
+  0% {
+    background: #ca6608;
+    box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
+  }
+  60% {
+    background: #ca6608;
+    box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
+  }
+  80% {
+    background: #10a742;
+    box-shadow: 0 0 5px #0a5415, 0 0 15px #0a5415, 0 0 25px #61ce76;
+  }
+  100% {
+    background: #10a742;
+    box-shadow: 0 0 5px #0a5415, 0 0 15px #0a5415, 0 0 25px #61ce76;
+  }
+}
+
+.answer.incorrect {
+  animation: incorrect 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes incorrect {
+  0% {
+    background: #ca6608;
+    box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
+  }
+  60% {
+    background: #ca6608;
+    box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
+  }
+  80% {
+    background: #bb280f;
+    box-shadow: 0 0 5px #540a07, 0 0 15px #540a07, 0 0 25px #d16161;
+  }
+  100% {
+    background: #bb280f;
+    box-shadow: 0 0 5px #540a07, 0 0 15px #540a07, 0 0 25px #d16161;
+  }
+}
+
+.lock-in-button,
+.username-button {
+  width: 45%;
+  max-width: 500px;
+  padding: 10px;
+  margin: 15px;
+  text-align: center;
+  background: linear-gradient(#110447, #091270);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 60px;
+  font-weight: 500;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.lock-in-button:hover,
+.username-button:hover {
+  background: #ca6608;
+  box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
+}
+
+.item.active {
+  background: radial-gradient(#ff8800, #863c04);
+  box-shadow: 0 0 5px orange, 0 0 25px orange;
+}
+
+.item {
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.money {
+  background-color: #121112;
+  display: flex;
+}
+
+.amount {
+  font-size: 20px;
+  font-weight: 300;
+  text-align: center;
+}
+
+.game-over {
+  top: 150px;
+  width: 60%;
+  padding: 20px;
+  text-align: center;
+  background: linear-gradient(#110447, #091270);
+  border: 1px solid #fff;
+  border-radius: 60px;
+  font-weight: 400;
+  font-size: 25px;
+  position: absolute;
+}
+
+.start-h1,
+.gameover-h1 {
+  font-size: 24px;
+  margin-bottom: 3vh;
+  text-align: center;
+}
+
+.username-container {
+  margin-top: 18vh;
+  background: linear-gradient(#260a99, #050a3a);
+  border-radius: 10px;
+}
+
+.input-button-container {
+  margin: 9vh 10vh 9vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.username-box,
+.username-button {
+  color: #121112;
+  font-size: 16px;
+  width: 90%;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.username-button {
+  cursor: pointer;
+  color: #ffffff;
 }

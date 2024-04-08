@@ -8,13 +8,13 @@ import fifteen from "../assets/fifteen.mp3";
 import millionaireRave from "../assets/MillionaireRave.mp3";
 
 const Quiz = ({
-  questions,
+  question,
   questionNumber,
   setQuestionNumber,
   setTimeOut,
   handleBecomeMillionaire,
 }) => {
-  const [question, setQuestion] = useState(null);
+  // const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState("answer");
   const [answersLocked, setAnswersLocked] = useState(false);
@@ -31,7 +31,6 @@ const Quiz = ({
     // TODO: add correct/incorrect sounds, maybe lock in answer
   };
 
-
   const playAudio = (audioRef) => {
     document.addEventListener("click", function playAudioOnInteraction() {
       Object.values(audioRefs).forEach((ref) => {
@@ -40,10 +39,10 @@ const Quiz = ({
           ref.current.currentTime = 0;
         }
       });
-  
+
       audioRef.current.loop = true;
       audioRef.current.play();
-  
+
       document.removeEventListener("click", playAudioOnInteraction);
     });
   };
@@ -78,9 +77,9 @@ const Quiz = ({
   }, [questionNumber]);
 
   // Update the current question when the question number changes
-  useEffect(() => {
-    setQuestion(questions[questionNumber - 1]);
-  }, [questions, questionNumber]);
+  // useEffect(() => {
+  //   setQuestion(questions[questionNumber - 1]);
+  // }, [questions, questionNumber]);
 
   // Delays the execution of a callback function for any given time
   const delay = (duration, callBack) => {
@@ -111,7 +110,7 @@ const Quiz = ({
   const handleLockIn = () => {
     if (!selectedAnswer) {
       // Can not lock in if answer is not selected
-      alert("Et voi lukita vastausta jos sitä ei ole valittu!");
+      alert("You cant lock an answer if its not selected!");
       console.log("Select answer before locking in!");
     } else {
       if (!answersLocked) {
