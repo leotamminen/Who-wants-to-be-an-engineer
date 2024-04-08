@@ -7,7 +7,7 @@ import Timer from "./components/Timer";
 import { prizeSums } from "./questions";
 import Start from "./components/Start";
 
-import apiQuestionService from './services/apiQuestionService';
+import apiQuestionService from "./services/apiQuestionService";
 import dbQuestionService from "./services/dbQuestionService";
 
 function App() {
@@ -26,19 +26,17 @@ function App() {
       setEarnedMoney(
         prizeSums.find((item) => item.id === questionNumber - 1).amount
       );
-    apiQuestionService.getQuestion()
-        .then(apiQuestion => {
-          if (apiQuestion) {
-            console.log("api kysymys");
-            setQuestion(apiQuestion);
-          } else {
-            console.log("db kysymys");
-            dbQuestionService.getQuestion(questionNumber)
-            .then(dbQuestion =>
-              setQuestion(dbQuestion)
-            );
-          }
-        });
+    apiQuestionService.getQuestion().then((apiQuestion) => {
+      if (apiQuestion) {
+        console.log("api kysymys");
+        setQuestion(apiQuestion);
+      } else {
+        console.log("db kysymys");
+        dbQuestionService
+          .getQuestion(questionNumber)
+          .then((dbQuestion) => setQuestion(dbQuestion));
+      }
+    });
   }, [questionNumber]);
 
   // Define a function to update isMillionaire state
@@ -83,7 +81,9 @@ function App() {
               {prizeSums.map((item) => (
                 <li
                   key={item.id}
-                  className={questionNumber === item.id ? "item active" : "item"}
+                  className={
+                    questionNumber === item.id ? "item active" : "item"
+                  }
                 >
                   <h5 className="amount">{item.amount}</h5>
                 </li>

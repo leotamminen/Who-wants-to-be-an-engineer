@@ -1,4 +1,4 @@
-// TODO start screen with possibly login or name, difficulty select(?)
+// TODO difficulty select(?)
 import React, { useRef } from "react";
 
 const Start = ({ setName, setTimeOut }) => {
@@ -10,18 +10,20 @@ const Start = ({ setName, setTimeOut }) => {
   };
 
   return (
-    <div className="username-container">
+    <div className="start-container">
       <h1 className="start-h1">Who wants to be an engineer</h1>
 
-      <input
-        type="text"
-        placeholder="Give your engineer candidate name"
-        ref={inputRef}
-        className="username-box"
-      />
-      <button className="username-button" onClick={handleClick}>
-        Let's start!{" "}
-      </button>
+      <div className="input-button-container">
+        <input
+          type="text"
+          placeholder="Give your engineer candidate name"
+          ref={inputRef}
+          className="username-box"
+        />
+        <button className="username-button" onClick={handleClick}>
+          Let's start!
+        </button>
+      </div>
     </div>
   );
 };
