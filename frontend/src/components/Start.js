@@ -10,13 +10,12 @@ const Start = ({ setName, setTimeOut }) => {
   };
 
   return (
-    <div className="start-container">
-      <h1 className="start-h1">Who wants to be an engineer</h1>
-
+    <div className="username-container">
       <div className="input-button-container">
+        <h1 className="start-h1">Who wants to be an engineer</h1>
         <input
           type="text"
-          placeholder="Give your engineer candidate name"
+          placeholder="Engineer candidate name"
           ref={inputRef}
           className="username-box"
         />

@@ -1,17 +1,20 @@
-// GameOver.js
 import React from "react";
 import { earnedMoney } from "../App";
 
-function GameOver({ className, earnedMoney }) {
-  // Function for refreshing the page when clicked "tästä".
+// Function for refreshing the page when clicked "here".
+function GameOver({ className, earnedMoney, name }) {
   const refreshPage = () => {
     window.location.reload();
   };
 
+  // Displays "name earned earnedMoney"
   return (
     <div className={className}>
       <h1>Game Over</h1>
-      <h2>You earned {earnedMoney}</h2>
+      <h2>
+        {name} earned {earnedMoney}
+      </h2>
+
       <p>
         You can try again by pressing{" "}
         <span
