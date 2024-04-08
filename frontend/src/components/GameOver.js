@@ -9,7 +9,7 @@ function GameOver({ className, earnedMoney, name }) {
 
   return (
     <div className={className}>
-      <h1>Game Over</h1>
+      <h1 className="gameover-h1">Game Over</h1>
       <h2>
         {name} earned {earnedMoney}
       </h2>

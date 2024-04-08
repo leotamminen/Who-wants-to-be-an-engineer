@@ -1,4 +1,9 @@
-// TODO difficulty select(?)
+// TODO:
+// language en/fi select (?)
+// darkmode switch (?)
+// scoreboard (?)
+// about page (?)
+// difficulty select(?)
 import React, { useRef } from "react";
 
 const Start = ({ setName, setTimeOut }) => {
