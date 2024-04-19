@@ -1,7 +1,7 @@
 // First test questions. Only 1 per difficulty at this point
 const questions = [
   {
-    id: 1,
+    // id: 1,
     question: "Milloin on elokuu?",
     answers: [
       {
@@ -23,7 +23,7 @@ const questions = [
     ],
   },
   {
-    id: 2,
+    // id: 2,
     question: "Mikä on maailman suurin (ei korkein) vuoristo?",
     answers: [
       {
@@ -45,7 +45,7 @@ const questions = [
     ],
   },
   {
-    id: 3,
+    // id: 3,
     question: "Mistä Martti Ahtisaari sai Nobel-palkinnon?",
     answers: [
       {
@@ -67,7 +67,7 @@ const questions = [
     ],
   },
   {
-    id: 4,
+    // id: 4,
     question: "Mikä seuraavista EI ole ohjelmointikieli?",
     answers: [
       {
@@ -89,7 +89,7 @@ const questions = [
     ],
   },
   {
-    id: 5,
+    // id: 5,
     question: "Millä ohjelmointikielellä tämä ohjelma on tehty?",
     answers: [
       {
@@ -111,7 +111,7 @@ const questions = [
     ],
   },
   {
-    id: 6,
+    // id: 6,
     question: "Kenen kuva oli viimeisessä 20 markan setelissä?",
     answers: [
       {
@@ -133,7 +133,7 @@ const questions = [
     ],
   },
   {
-    id: 7,
+    // id: 7,
     question: "Montako tuhatta on miljoona?",
     answers: [
       {
@@ -155,7 +155,7 @@ const questions = [
     ],
   },
   {
-    id: 8,
+    // id: 8,
     question: "Millä nimellä muusikko Petri Tiili tunnetaan paremmin?",
     answers: [
       {
@@ -177,7 +177,7 @@ const questions = [
     ],
   },
   {
-    id: 9,
+    // id: 9,
     question: "Minkä lajin legendaarisia nimiä on Kareem Abdul-Jabbar?",
     answers: [
       {
@@ -199,7 +199,7 @@ const questions = [
     ],
   },
   {
-    id: 10,
+    // id: 10,
     question: "Mikä on Ruotsin pääkaupunki?",
     answers: [
       {
@@ -221,7 +221,7 @@ const questions = [
     ],
   },
   {
-    id: 11,
+    // id: 11,
     question: "Missä kaupungissa sijaitsee kuuluisa Yyterin hiekkaranta?",
     answers: [
       {
@@ -243,7 +243,7 @@ const questions = [
     ],
   },
   {
-    id: 12,
+    // id: 12,
     question:
       "Kuka on kirjoittanut historiallisen romaanin Sinuhe Egyptiläinen?",
     answers: [
@@ -266,7 +266,7 @@ const questions = [
     ],
   },
   {
-    id: 13,
+    // id: 13,
     question:
       "Kuka on maalannut Teuvan kirkon alttaritaulun Kymmenen neitsyttä?",
     answers: [
@@ -289,7 +289,7 @@ const questions = [
     ],
   },
   {
-    id: 14,
+    // id: 14,
     question: "Minkä eläimen tieteellinen nimi on Canis lupus?",
     answers: [
       {
@@ -311,7 +311,7 @@ const questions = [
     ],
   },
   {
-    id: 15,
+    // id: 15,
     question:
       "Missä paikassa Auric Goldfinger suunnittelee räjäyttävänsä ydinpommin elokuvassa 007 ja kultasormi?",
     answers: [
@@ -354,5 +354,23 @@ const prizeSums = [
   { id: 15, amount: "1 000 000 €" },
 ].reverse();
 
+const studyPoints = [
+  { id: 1, amount: "1 op" },
+  { id: 2, amount: "5 op" },
+  { id: 3, amount: "20 op" },
+  { id: 4, amount: "40 op" },
+  { id: 5, amount: "60 op" },
+  { id: 6, amount: "80 op" },
+  { id: 7, amount: "100 op" },
+  { id: 8, amount: "125 op" },
+  { id: 9, amount: "150 op" },
+  { id: 10, amount: "180 op" },
+  { id: 11, amount: "200 op" },
+  { id: 12, amount: "220 op" },
+  { id: 13, amount: "245 op" },
+  { id: 14, amount: "270 op" },
+  { id: 15, amount: "300 op" },
+].reverse();
+
 // works with the backend
-module.exports = { prizeSums, questions };
+module.exports = { prizeSums, questions, studyPoints };
