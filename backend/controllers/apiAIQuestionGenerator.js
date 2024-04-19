@@ -54,7 +54,6 @@ const questionGenerator = async () => {
     })
     .then((result) => {
       const output = result[0]?.candidates[0]?.output;
-      console.log(output);
       if (output !== undefined && output !== null && output !== '') {
         const jsonContent = output.replace(/^```(?:json\s*)?|\s*```$/g, '');
         const jsonObject = JSON.parse(jsonContent);
@@ -73,7 +72,6 @@ function validateQuestion(question) {
     !question.answers[2].text.toLowerCase().includes('correct answer') &&
     !question.answers[3].text.toLowerCase().includes('correct answer')
   ) {
-    console.log(question);
     return true;
   }
   return false;
