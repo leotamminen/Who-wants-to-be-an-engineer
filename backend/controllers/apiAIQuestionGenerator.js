@@ -54,10 +54,29 @@ const questionGenerator = async () => {
     })
     .then((result) => {
       const output = result[0]?.candidates[0]?.output;
-      const jsonContent = output.replace(/^```json\s*|\s*```$/g, '');
-      const jsonObject = JSON.parse(jsonContent);
-      return jsonObject;
+      console.log(output);
+      if (output !== undefined && output !== null && output !== '') {
+        const jsonContent = output.replace(/^```(?:json\s*)?|\s*```$/g, '');
+        const jsonObject = JSON.parse(jsonContent);
+        if (validateQuestion(jsonObject)) {
+          return jsonObject;
+        }
+      }
     });
 };
+
+function validateQuestion(question) {
+  if (
+    question.question[question.question.length - 1] === '?' &&
+    !question.answers[0].text.toLowerCase().includes('correct answer') &&
+    !question.answers[1].text.toLowerCase().includes('correct answer') &&
+    !question.answers[2].text.toLowerCase().includes('correct answer') &&
+    !question.answers[3].text.toLowerCase().includes('correct answer')
+  ) {
+    console.log(question);
+    return true;
+  }
+  return false;
+}
 
 module.exports = { questionGenerator };
