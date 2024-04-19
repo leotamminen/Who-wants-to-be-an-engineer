@@ -4,7 +4,7 @@ import GameOver from "./components/GameOver";
 import GameWinner from "./components/GameWinner";
 import Quiz from "./components/Quiz";
 import Timer from "./components/Timer";
-import { prizeSums } from "./questions";
+import { studyPoints, questions } from "./questions";
 import Start from "./components/Start";
 
 import apiQuestionService from "./services/apiQuestionService";
@@ -25,7 +25,7 @@ function App() {
     // only start tracking after player got through first question
     questionNumber > 1 &&
       setEarnedMoney(
-        prizeSums.find((item) => item.id === questionNumber - 1).amount
+        studyPoints.find((item) => item.id === questionNumber - 1).amount
       );
   }, [questionNumber]);
 
@@ -35,11 +35,16 @@ function App() {
         console.log("api kysymys");
         setQuestion(apiQuestion);
       } else {
-        console.log("db kysymys");
         dbQuestionService
           .getQuestion(questionNumber)
           .then((dbQuestion) => {
-            setQuestion(dbQuestion);
+            if (dbQuestion) {
+              console.log("db kysymys");
+              setQuestion(dbQuestion);
+            } else {
+              console.log("hard coded question")
+              setQuestion(questions[questionNumber - 1]);
+            }
           });
       }
     });
@@ -91,7 +96,7 @@ function App() {
           </div>
           <div className="money-container">
             <ul className="money-list">
-              {prizeSums.map((item) => (
+              {studyPoints.map((item) => (
                 <li
                   key={item.id}
                   className={

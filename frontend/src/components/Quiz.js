@@ -8,6 +8,7 @@ import fifteen from "../assets/fifteen.mp3";
 import millionaireRave from "../assets/MillionaireRave.mp3";
 import apiQuestionService from "../services/apiQuestionService";
 import dbQuestionService from "../services/dbQuestionService";
+import { questions } from "../questions";
 
 const Quiz = ({
   question,
@@ -88,17 +89,17 @@ const Quiz = ({
         console.log("api kysymys");
         setNextQuestion(apiQuestion); // Set the next question
       } else {
-        console.log("db kysymys");
         const dbQuestion = await dbQuestionService.getQuestion(questionNumber + 1); // Fetch the next question from database
         if (dbQuestion) {
+          console.log("db kysymys");
           setNextQuestion(dbQuestion); // Set the next question
         } else {
-          console.log("shitty situation");
+          console.log("hard coded question");
           // get question from question.js
+          setNextQuestion(questions[questionNumber]);
         }
       }
     };
-
     fetchNextQuestion();
   }, [questionNumber]);
 
