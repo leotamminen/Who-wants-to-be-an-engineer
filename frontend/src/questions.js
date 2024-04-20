@@ -355,21 +355,21 @@ const prizeSums = [
 ].reverse();
 
 const studyPoints = [
-  { id: 1, amount: "1 op" },
-  { id: 2, amount: "5 op" },
-  { id: 3, amount: "20 op" },
-  { id: 4, amount: "40 op" },
-  { id: 5, amount: "60 op" },
-  { id: 6, amount: "80 op" },
-  { id: 7, amount: "100 op" },
-  { id: 8, amount: "125 op" },
-  { id: 9, amount: "150 op" },
-  { id: 10, amount: "180 op" },
-  { id: 11, amount: "200 op" },
-  { id: 12, amount: "220 op" },
-  { id: 13, amount: "245 op" },
-  { id: 14, amount: "270 op" },
-  { id: 15, amount: "300 op" },
+  { id: 1, amount: "1 cr" },
+  { id: 2, amount: "5 cr" },
+  { id: 3, amount: "20 cr" },
+  { id: 4, amount: "40 cr" },
+  { id: 5, amount: "60 cr" },
+  { id: 6, amount: "80 cr" },
+  { id: 7, amount: "100 cr" },
+  { id: 8, amount: "125 cr" },
+  { id: 9, amount: "150 cr" },
+  { id: 10, amount: "180 cr" },
+  { id: 11, amount: "200 cr" },
+  { id: 12, amount: "220 cr" },
+  { id: 13, amount: "245 cr" },
+  { id: 14, amount: "270 cr" },
+  { id: 15, amount: "300 cr" },
 ].reverse();
 
 // works with the backend
