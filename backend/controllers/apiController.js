@@ -1,6 +1,7 @@
 const APIController = require("express").Router();
 const Question = require("../models/question");
 const QuestionGenerator = require("./apiAIQuestionGenerator");
+const logger = require('../utils/logger');
 
 APIController.get("/", async (req, res) => {
   try {
@@ -8,7 +9,7 @@ APIController.get("/", async (req, res) => {
     const result = await QuestionGenerator.questionGenerator();
     res.json(result);
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     res.json(null);
   }
 });
