@@ -22,6 +22,7 @@ const Quiz = ({
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState("answer");
   const [answersLocked, setAnswersLocked] = useState(false);
+  const options = ['A: ', 'B: ', 'C: ', 'D: '];
 
   // refs for various audio tracks
   const audioRefs = {
@@ -210,7 +211,7 @@ const Quiz = ({
             }`}
             onClick={() => !answersLocked && handleClick(item)}
           >
-            {item.text}
+            {options[index] + item.text}
           </div>
         ))}
       </div>
