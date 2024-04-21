@@ -248,3 +248,23 @@ h1 {
   cursor: pointer;
   color: #ffffff;
 }
+
+.askFriendBoxContainer {
+  display: none;
+}
+
+.askFriendBoxContainer.visible {
+  display: block;
+}
+
+.askFriendBox {
+  color: black;
+}
+
+.aiAnswerContainer {
+  display: none;
+}
+
+.aiAnswerContainer.visible {
+  display: block;
+}

@@ -6,6 +6,7 @@ import Quiz from "./components/Quiz";
 import Timer from "./components/Timer";
 import { studyPoints, questions } from "./questions";
 import Start from "./components/Start";
+import Lifelines from "./components/Lifelines";
 
 import apiQuestionService from "./services/apiQuestionService";
 import dbQuestionService from "./services/dbQuestionService";
@@ -72,6 +73,9 @@ function App() {
                   answersLocked={answersLocked}
                 />
               </div>
+            </div>
+            <div>
+              <Lifelines />
             </div>
             <div className="game">
               {timeOut ? (
