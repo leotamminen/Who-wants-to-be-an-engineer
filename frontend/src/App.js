@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 import GameOver from "./components/GameOver";
 import GameWinner from "./components/GameWinner";
@@ -17,8 +17,8 @@ function App() {
   const [answersLocked, setAnswersLocked] = useState(false);
   const [isMillionaire, setIsMillionaire] = useState(false);
   const [earnedMoney, setEarnedMoney] = useState("0 €");
-  const [question, setQuestion] = useState(null);
-  const [nextQuestion, setNextQuestion] = useState(null);
+  const question = useRef(null);
+  const nextQuestion = useRef(null);
 
   // Update earned money when the question number changes
   useEffect(() => {
@@ -30,20 +30,23 @@ function App() {
   }, [questionNumber]);
 
   useEffect(() => {
+    // Fetct question from API
     apiQuestionService.getQuestion().then((apiQuestion) => {
       if (apiQuestion) {
         console.log("api kysymys");
-        setQuestion(apiQuestion);
+        question.current = apiQuestion;
       } else {
+        // Fetch question from database
         dbQuestionService
-          .getQuestion(questionNumber)
+          .getQuestion(1)
           .then((dbQuestion) => {
             if (dbQuestion) {
               console.log("db kysymys");
-              setQuestion(dbQuestion);
+              question.current = dbQuestion;
             } else {
               console.log("hard coded question")
-              setQuestion(questions[questionNumber - 1]);
+              // Get question from questions.js
+              question.current = questions[0];
             }
           });
       }
@@ -82,9 +85,7 @@ function App() {
               ) : (
                 <Quiz
                   question={question}
-                  setQuestion={setQuestion}
                   nextQuestion={nextQuestion}
-                  setNextQuestion={setNextQuestion}
                   questionNumber={questionNumber}
                   setQuestionNumber={setQuestionNumber}
                   setTimeOut={setTimeOut}

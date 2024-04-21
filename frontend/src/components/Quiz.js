@@ -12,9 +12,7 @@ import { questions } from "../questions";
 
 const Quiz = ({
   question,
-  setQuestion,
   nextQuestion,
-  setNextQuestion,
   questionNumber,
   setQuestionNumber,
   setTimeOut,
@@ -82,24 +80,27 @@ const Quiz = ({
     }
   }, [questionNumber]);
 
-  useEffect(() => {
-    const fetchNextQuestion = async () => {
-      const apiQuestion = await apiQuestionService.getQuestion(); // Fetch the next question from API
-      if (apiQuestion) {
-        console.log("api kysymys");
-        setNextQuestion(apiQuestion); // Set the next question
+  const fetchNextQuestion = async () => {
+    // Fetch the next question from API
+    const apiQuestion = await apiQuestionService.getQuestion();
+    if (apiQuestion) {
+      console.log("api kysymys");
+      nextQuestion.current = apiQuestion;
+    } else {
+      // Fetch the next question from database
+      const dbQuestion = await dbQuestionService.getQuestion(questionNumber + 1);
+      if (dbQuestion) {
+        console.log("db kysymys");
+        nextQuestion.current = dbQuestion;
       } else {
-        const dbQuestion = await dbQuestionService.getQuestion(questionNumber + 1); // Fetch the next question from database
-        if (dbQuestion) {
-          console.log("db kysymys");
-          setNextQuestion(dbQuestion); // Set the next question
-        } else {
-          console.log("hard coded question");
-          // get question from question.js
-          setNextQuestion(questions[questionNumber]);
-        }
+        console.log("hard coded question");
+        // Get question from questions.js
+        nextQuestion.current = questions[questionNumber];
       }
-    };
+    }
+  };
+
+  useEffect(() => {
     fetchNextQuestion();
   }, [questionNumber]);
 
@@ -156,12 +157,19 @@ const Quiz = ({
 
             // If the locked-in answer is correct, move to the next question after 1 sec
             if (selectedAnswer.correct) {
-              delay(1000, () => {
-                setQuestion(nextQuestion);
-                setQuestionNumber((prev) => prev + 1);
-                setSelectedAnswer(null);
-                setClassName("answer");
-                setAnswersLocked(false); // Unlock answers for the next question
+              delay(1000, async () => {
+                if (!nextQuestion.current) {
+                  await fetchNextQuestion();
+                }
+
+                if (nextQuestion.current) {
+                  question.current = nextQuestion.current;
+                  nextQuestion.current = null;
+                  setQuestionNumber((prev) => prev + 1);
+                  setSelectedAnswer(null);
+                  setClassName("answer");
+                  setAnswersLocked(false); // Unlock answers for the next question
+                }
               });
             } else {
               // If the locked-in answer is incorrect, reset className for the incorrect answer after 1 sec
@@ -184,9 +192,9 @@ const Quiz = ({
 
   return (
     <div className="quiz">
-      <div className="question">{question?.question}</div>
+      <div className="question">{question.current?.question}</div>
       <div className={`answers ${answersLocked ? "answers-locked" : ""}`}>
-        {question?.answers.map((item, index) => (
+        {question.current?.answers.map((item, index) => (
           <div
             key={index}
             className={`${
