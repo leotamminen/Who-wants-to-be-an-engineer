@@ -21,8 +21,6 @@ The primary goal of this project is to create a quiz game using the MERN stack a
 
 Priority:
 
-- [ ] Handle AI generated question error and use backup questions
-- [ ] Change the format from earning money to earning cr
 - [ ] Lifelines to frontend
   - [ ] 50:50
   - [ ] Phone a friend
