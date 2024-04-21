@@ -5,6 +5,7 @@ const cors = require("cors");
 
 const apiController = require("./controllers/apiController");
 const dbController = require("./controllers/dbController");
+const lifelineController = require("./controllers/lifelineController");
 
 const middleware = require("./utils/middleware");
 const logger = require("./utils/logger");
@@ -28,6 +29,7 @@ app.use(express.json());
 
 app.use("/api/apiquestions", apiController);
 app.use("/api/dbquestions", dbController);
+app.use("/api/lifelines", lifelineController);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
