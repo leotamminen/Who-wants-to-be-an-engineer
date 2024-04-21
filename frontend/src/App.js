@@ -75,7 +75,7 @@ function App() {
               </div>
             </div>
             <div>
-              <Lifelines />
+              <Lifelines question={question.current}/>
             </div>
             <div className="game">
               {timeOut ? (

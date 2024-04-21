@@ -268,3 +268,11 @@ h1 {
 .aiAnswerContainer.visible {
   display: block;
 }
+
+.audienceAnswerContainer {
+  display: none;
+}
+
+.audienceAnswerContainer.visible {
+  display: block;
+}
