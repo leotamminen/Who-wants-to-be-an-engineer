@@ -20,6 +20,8 @@ function App() {
   const [earnedMoney, setEarnedMoney] = useState("0 €");
   const question = useRef(null);
   const nextQuestion = useRef(null);
+  const [, forceUpdate] = useState();
+  const [isFiftyFiftyUsed, setIsFiftyFiftyUsed] = useState(false);
 
   // Update earned money when the question number changes
   useEffect(() => {
@@ -59,6 +61,28 @@ function App() {
     setIsMillionaire(true);
   };
 
+  const lifelineUsageConfirmation = (setIsLifelineUsed) => {
+
+  }
+
+  const handleFiftyFifty = () => {
+    // TODO: implement confirmation message
+
+
+    if (question.current) {
+      const numbers = [0, 1, 2];
+      const randomNumber1 = numbers[Math.floor(Math.random() * numbers.length)];
+      numbers.splice(randomNumber1, 1);
+      const randomNumber2 = numbers[Math.floor(Math.random() * (numbers.length - 1))];
+
+      const incorrectAnswers = question.current.answers.filter(answer => !answer.correct);
+      incorrectAnswers[randomNumber1].text = "";
+      incorrectAnswers[randomNumber2].text = "";
+
+      forceUpdate({});
+    }
+  }
+
   // Only render the game content if the name is provided
   return (
     <div className="App">
@@ -75,7 +99,11 @@ function App() {
               </div>
             </div>
             <div>
-              <Lifelines question={question.current}/>
+              <Lifelines
+                question={question.current}
+                handleFiftyFifty={handleFiftyFifty}
+                isFiftyFiftyUsed={isFiftyFiftyUsed}
+              />
             </div>
             <div className="game">
               {timeOut ? (

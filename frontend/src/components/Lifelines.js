@@ -1,13 +1,15 @@
 import { useState } from "react";
 import lifelineService from "../services/lifelineService";
 
-const Lifelines = ({ question }) => {
+const Lifelines = ({ question, handleFiftyFifty, isFiftyFiftyUsed }) => {
   const [isAskFriendBoxVisible, setIsAskFriendBoxVisible] = useState(false);
   const [questionToFriend, setQuestionToFriend] = useState("");
   const [aiAnswer, setAiAnswer] = useState("");
   const [isAiAnswerVisible, setIsAiAnswerVisible] = useState(false);
+  const [isAskFriendUsed, setIsAskFriendUsed] = useState(false);
   const [audienceAnswers, setAudienceAnswers] = useState([]);
   const [isAudienceAnswerVisible, setIsAudienceAnswerVisible] = useState(false);
+  const [isAskAudienceUsed, setIsAskAudienceUsed] = useState(false);
 
   const handleAskFriend = () => {
     setIsAskFriendBoxVisible(true);
@@ -37,7 +39,7 @@ const Lifelines = ({ question }) => {
 
   const handleAskAudience = () => {
     console.log(question);
-    let answers = [];
+    const answers = [];
     for (let i = 0; i < 3; i++) {
       const probability = Math.random();
       if (probability >= 0.1) {
@@ -55,7 +57,7 @@ const Lifelines = ({ question }) => {
 
   return (
     <div>
-      <button>50:50</button>
+      <button onClick={handleFiftyFifty}>50:50</button>
       <button onClick={handleAskFriend}>Ask friend</button>
       <button onClick={handleAskAudience}>Ask audience</button>
       <div className={isAskFriendBoxVisible ? "askFriendBoxContainer visible" : "askFriendBoxContainer"}>
