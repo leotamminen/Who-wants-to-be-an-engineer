@@ -20,7 +20,7 @@ function App() {
   const [timeOut, setTimeOut] = useState(false);
   const [answersLocked, setAnswersLocked] = useState(false);
   const [isMillionaire, setIsMillionaire] = useState(false);
-  const [earnedMoney, setEarnedMoney] = useState("0 €");
+  const [earnedMoney, setEarnedMoney] = useState("0 cr");
   const question = useRef(null);
   const nextQuestion = useRef(null);
   const [, forceUpdate] = useState();
@@ -151,21 +151,6 @@ function App() {
                         answersLocked={answersLocked}
                       />
                     </div>
-                    {/* <div className="lifelines">
-                      <Lifelines
-                        isFiftyFiftyUsed={isFiftyFiftyUsed}
-                        isAskFriendUsed={isAskFriendUsed}
-                        isAskAudienceUsed={isAskAudienceUsed}
-                        isAskFriendBoxVisible={isAskFriendBoxVisible}
-                        setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
-                        isAudienceAnswerVisible={isAudienceAnswerVisible}
-                        audienceAnswers={audienceAnswers}
-                        setIsLifelineUsageVisible={setIsLifelineUsageVisible}
-                        setLifeline={setLifeline}
-                        isAiAnswerVisible={isAiAnswerVisible}
-                        setIsAiAnswerVisible={setIsAiAnswerVisible}
-                      />
-                    </div> */}
                   </div>
                   <div className={isLifelineUsageVisible ? "lifeline-usage-container visible" : "lifeline-usage-container"}>
                     <LifelineUsageConfirmation
@@ -183,26 +168,30 @@ function App() {
                     ) : isMillionaire ? (
                       <GameWinner className="game-over" />
                     ) : (
-                      <><Lifelines
-                            isFiftyFiftyUsed={isFiftyFiftyUsed}
-                            isAskFriendUsed={isAskFriendUsed}
-                            isAskAudienceUsed={isAskAudienceUsed}
-                            isAskFriendBoxVisible={isAskFriendBoxVisible}
-                            setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
-                            isAudienceAnswerVisible={isAudienceAnswerVisible}
-                            audienceAnswers={audienceAnswers}
-                            setIsLifelineUsageVisible={setIsLifelineUsageVisible}
-                            setLifeline={setLifeline}
-                            isAiAnswerVisible={isAiAnswerVisible}
-                            setIsAiAnswerVisible={setIsAiAnswerVisible} />
-                            <Quiz
-                              question={question}
-                              nextQuestion={nextQuestion}
-                              questionNumber={questionNumber}
-                              setQuestionNumber={setQuestionNumber}
-                              setTimeOut={setTimeOut}
-                              setAnswersLocked={setAnswersLocked}
-                              handleBecomeMillionaire={handleBecomeMillionaire} /></>
+                      <>
+                        <Lifelines
+                          isFiftyFiftyUsed={isFiftyFiftyUsed}
+                          isAskFriendUsed={isAskFriendUsed}
+                          isAskAudienceUsed={isAskAudienceUsed}
+                          isAskFriendBoxVisible={isAskFriendBoxVisible}
+                          setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
+                          isAudienceAnswerVisible={isAudienceAnswerVisible}
+                          audienceAnswers={audienceAnswers}
+                          setIsLifelineUsageVisible={setIsLifelineUsageVisible}
+                          setLifeline={setLifeline}
+                          isAiAnswerVisible={isAiAnswerVisible}
+                          setIsAiAnswerVisible={setIsAiAnswerVisible}
+                        />
+                        <Quiz
+                          question={question}
+                          nextQuestion={nextQuestion}
+                          questionNumber={questionNumber}
+                          setQuestionNumber={setQuestionNumber}
+                          setTimeOut={setTimeOut}
+                          setAnswersLocked={setAnswersLocked}
+                          handleBecomeMillionaire={handleBecomeMillionaire}
+                        />
+                      </>
                     )}
                   </div>
                 </div>
