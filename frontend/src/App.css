@@ -268,6 +268,9 @@ h1 {
 
 .aiAnswerContainer.visible {
   display: block;
+  background: linear-gradient(#260a99, #050a3a);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .audienceAnswerContainer {
@@ -276,6 +279,9 @@ h1 {
 
 .audienceAnswerContainer.visible {
   display: block;
+  background: linear-gradient(#260a99, #050a3a);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .lifeline-usage-container {

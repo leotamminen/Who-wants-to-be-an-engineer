@@ -10,11 +10,12 @@ const Lifelines = ({
   isAudienceAnswerVisible,
   audienceAnswers,
   setIsLifelineUsageVisible,
-  setLifeline
+  setLifeline,
+  isAiAnswerVisible,
+  setIsAiAnswerVisible
 }) => {
   const [questionToFriend, setQuestionToFriend] = useState("");
   const [aiAnswer, setAiAnswer] = useState("");
-  const [isAiAnswerVisible, setIsAiAnswerVisible] = useState(false);
 
   const handleLifelineUse = (lifeline) => {
     setIsLifelineUsageVisible(true);
@@ -81,7 +82,7 @@ const Lifelines = ({
           {aiAnswer}
         </div>
         <div className={isAudienceAnswerVisible ? "audienceAnswerContainer visible" : "audienceAnswerContainer"}>
-          Viewer 1 thinks the correct answer is {audienceAnswers[0]}, viewer 2 says {audienceAnswers[1]}, and viewer 3 thinks {audienceAnswers[2]} is the correct one
+          Viewer 1: {audienceAnswers[0]}, viewer 2: {audienceAnswers[1]}, viewer 3: {audienceAnswers[2]}
         </div>
       </div>
     </div>

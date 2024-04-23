@@ -28,7 +28,7 @@ function App() {
   const [isFiftyFiftyUsed, setIsFiftyFiftyUsed] = useState(false);
   const [isAskFriendUsed, setIsAskFriendUsed] = useState(false);
   const [isAskAudienceUsed, setIsAskAudienceUsed] = useState(false);
-
+  const [isAiAnswerVisible, setIsAiAnswerVisible] = useState(false);
   const [isLifelineUsageVisible, setIsLifelineUsageVisible] = useState(false);
   const [isAskFriendBoxVisible, setIsAskFriendBoxVisible] = useState(false);
   const [audienceAnswers, setAudienceAnswers] = useState([]);
@@ -42,6 +42,8 @@ function App() {
       setEarnedMoney(
         studyPoints.find((item) => item.id === questionNumber - 1).amount
       );
+    setIsAiAnswerVisible(false);
+    setIsAudienceAnswerVisible(false);
   }, [questionNumber]);
 
   useEffect(() => {
@@ -160,6 +162,8 @@ function App() {
                         audienceAnswers={audienceAnswers}
                         setIsLifelineUsageVisible={setIsLifelineUsageVisible}
                         setLifeline={setLifeline}
+                        isAiAnswerVisible={isAiAnswerVisible}
+                        setIsAiAnswerVisible={setIsAiAnswerVisible}
                       />
                     </div>
                   </div>
