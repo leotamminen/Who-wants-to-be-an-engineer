@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import GameOver from "./components/GameOver";
 import GameWinner from "./components/GameWinner";
@@ -7,6 +8,7 @@ import Timer from "./components/Timer";
 import { studyPoints, questions } from "./questions";
 import Start from "./components/Start";
 import Lifelines from "./components/Lifelines";
+import About from "./components/About"; // Import the About component
 
 import apiQuestionService from "./services/apiQuestionService";
 import dbQuestionService from "./services/dbQuestionService";
@@ -40,18 +42,16 @@ function App() {
         question.current = apiQuestion;
       } else {
         // Fetch question from database
-        dbQuestionService
-          .getQuestion(1)
-          .then((dbQuestion) => {
-            if (dbQuestion) {
-              console.log("db kysymys");
-              question.current = dbQuestion;
-            } else {
-              console.log("hard coded question")
-              // Get question from questions.js
-              question.current = questions[0];
-            }
-          });
+        dbQuestionService.getQuestion(1).then((dbQuestion) => {
+          if (dbQuestion) {
+            console.log("db kysymys");
+            question.current = dbQuestion;
+          } else {
+            console.log("hard coded question");
+            // Get question from questions.js
+            question.current = questions[0];
+          }
+        });
       }
     });
   }, []);
@@ -61,90 +61,101 @@ function App() {
     setIsMillionaire(true);
   };
 
-  const lifelineUsageConfirmation = (setIsLifelineUsed) => {
-
-  }
+  const lifelineUsageConfirmation = (setIsLifelineUsed) => {};
 
   const handleFiftyFifty = () => {
     // TODO: implement confirmation message
-
 
     if (question.current) {
       const numbers = [0, 1, 2];
       const randomNumber1 = numbers[Math.floor(Math.random() * numbers.length)];
       numbers.splice(randomNumber1, 1);
-      const randomNumber2 = numbers[Math.floor(Math.random() * (numbers.length - 1))];
+      const randomNumber2 =
+        numbers[Math.floor(Math.random() * (numbers.length - 1))];
 
-      const incorrectAnswers = question.current.answers.filter(answer => !answer.correct);
+      const incorrectAnswers = question.current.answers.filter(
+        (answer) => !answer.correct
+      );
       incorrectAnswers[randomNumber1].text = "";
       incorrectAnswers[randomNumber2].text = "";
 
       forceUpdate({});
     }
-  }
+  };
 
   // Only render the game content if the name is provided
   return (
     <div className="App">
-      {name ? (
-        <>
-          <div className="game-container">
-            <div className="timer-container">
-              <div className="timer">
-                <Timer
-                  setTimeOut={setTimeOut}
-                  questionNumber={questionNumber}
-                  answersLocked={answersLocked}
-                />
-              </div>
-            </div>
-            <div>
-              <Lifelines
-                question={question.current}
-                handleFiftyFifty={handleFiftyFifty}
-                isFiftyFiftyUsed={isFiftyFiftyUsed}
-              />
-            </div>
-            <div className="game">
-              {timeOut ? (
-                <GameOver
-                  className="game-over"
-                  earnedMoney={earnedMoney}
-                  name={name}
-                />
-              ) : isMillionaire ? (
-                <GameWinner className="game-over" />
-              ) : (
-                <Quiz
-                  question={question}
-                  nextQuestion={nextQuestion}
-                  questionNumber={questionNumber}
-                  setQuestionNumber={setQuestionNumber}
-                  setTimeOut={setTimeOut}
-                  setAnswersLocked={setAnswersLocked}
-                  handleBecomeMillionaire={handleBecomeMillionaire}
-                />
-              )}
-            </div>
-          </div>
-          <div className="money-container">
-            <ul className="money-list">
-              {studyPoints.map((item) => (
-                <li
-                  key={item.id}
-                  className={
-                    questionNumber === item.id ? "item active" : "item"
-                  }
-                >
-                  <h5 className="amount">{item.amount}</h5>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </>
-      ) : (
-        <Start setName={setName} setTimeOut={setTimeOut} />
-      )}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            name ? (
+              <>
+                <div className="game-container">
+                  <div className="timer-container">
+                    <div className="timer">
+                      <Timer
+                        setTimeOut={setTimeOut}
+                        questionNumber={questionNumber}
+                        answersLocked={answersLocked}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <Lifelines
+                      question={question.current}
+                      handleFiftyFifty={handleFiftyFifty}
+                      isFiftyFiftyUsed={isFiftyFiftyUsed}
+                    />
+                  </div>
+                  <div className="game">
+                    {timeOut ? (
+                      <GameOver
+                        className="game-over"
+                        earnedMoney={earnedMoney}
+                        name={name}
+                      />
+                    ) : isMillionaire ? (
+                      <GameWinner className="game-over" />
+                    ) : (
+                      <Quiz
+                        question={question}
+                        nextQuestion={nextQuestion}
+                        questionNumber={questionNumber}
+                        setQuestionNumber={setQuestionNumber}
+                        setTimeOut={setTimeOut}
+                        setAnswersLocked={setAnswersLocked}
+                        handleBecomeMillionaire={handleBecomeMillionaire}
+                      />
+                    )}
+                  </div>
+                </div>
+                {name && (
+                  <div className="money-container">
+                    <ul className="money-list">
+                      {studyPoints.map((item) => (
+                        <li
+                          key={item.id}
+                          className={
+                            questionNumber === item.id ? "item active" : "item"
+                          }
+                        >
+                          <h5 className="amount">{item.amount}</h5>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </>
+            ) : (
+              <Start setName={setName} setTimeOut={setTimeOut} />
+            )
+          }
+        />
+        <Route path="/about" element={<About />} />{" "}
+        {/* Route for the About page */}
+      </Routes>
     </div>
   );
 }

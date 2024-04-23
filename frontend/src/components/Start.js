@@ -5,16 +5,17 @@
 // about page (?)
 // difficulty select(?)
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 
 const Start = ({ setName, setTimeOut }) => {
   const inputRef = useRef();
 
   const handleClick = () => {
     setTimeOut(false);
-    const nameInput = inputRef.current.value.trim(); // Trim any extra spaces from name
+    const nameInput = inputRef.current.value.trim();
     if (!nameInput) {
       alert("Please input a name first");
-      inputRef.current.value = ""; // Clear input box if it is empty or just spaces
+      inputRef.current.value = "";
     } else {
       setName(nameInput);
       // consolelog name
@@ -38,11 +39,14 @@ const Start = ({ setName, setTimeOut }) => {
           placeholder="Engineer candidate name"
           ref={inputRef}
           className="username-box"
-          onKeyDown={handleKeyPress} // This makes sure enter key works also
+          onKeyDown={handleKeyPress}
         />
         <button className="username-button" onClick={handleClick}>
           Let's start!
         </button>
+        <Link to="/about" className="about-button">
+          About
+        </Link>
       </div>
     </div>
   );
