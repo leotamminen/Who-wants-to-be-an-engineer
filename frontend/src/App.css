@@ -343,18 +343,7 @@ h1 {
 }
 
 .fiftyfifty-button.disabled {
-  margin: 3px;
   background-image: url("../images/50.50_cross.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 78px;
-  height: 60px;
-  border-radius: 50% / 50% 50%;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease; /* Add transition for smooth scaling */
-  background-color: black;
 }
 
 .fiftyfifty-button:hover {
@@ -377,18 +366,7 @@ h1 {
 }
 
 .ask-friend-button.disabled {
-  margin: 3px;
   background-image: url("../images/phone-friend-cross.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 78px;
-  height: 60px;
-  border-radius: 50% / 50% 50%;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease; /* Add transition for smooth scaling */
-  background-color: black;
 }
 
 .ask-friend-button:hover {
@@ -411,18 +389,7 @@ h1 {
 }
 
 .ask-audience-button.disabled {
-  margin: 3px;
   background-image: url("../images/audience_cross.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 78px;
-  height: 60px;
-  border-radius: 50% / 50% 50%;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease; /* Add transition for smooth scaling */
-  background-color: black;
 }
 
 .ask-audience-button:hover {
