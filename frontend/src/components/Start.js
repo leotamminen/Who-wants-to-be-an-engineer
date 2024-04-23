@@ -6,6 +6,7 @@
 // difficulty select(?)
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
+import teekkarilakki from "./../assets/teekkarilakki.gif";
 
 const Start = ({ setName, setTimeOut }) => {
   const inputRef = useRef();
@@ -34,6 +35,12 @@ const Start = ({ setName, setTimeOut }) => {
     <div className="username-container">
       <div className="input-button-container">
         <h1 className="start-h1">Who wants to be an engineer</h1>
+        <img
+          src={teekkarilakki}
+          alt="Teekkari cap GIF"
+          style={{ width: "150px", height: "150px" }}
+        />
+
         <input
           type="text"
           placeholder="Engineer candidate name"
