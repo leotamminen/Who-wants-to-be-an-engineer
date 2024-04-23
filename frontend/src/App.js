@@ -88,11 +88,12 @@ function App() {
         setIsFiftyFiftyUsed(true);
         if (question.current) {
           const numbers = [0, 1, 2];
-          const randomNumber1 = numbers[Math.floor(Math.random() * numbers.length)];
+          const randomNumber1 =
+            numbers[Math.floor(Math.random() * numbers.length)];
           numbers.splice(randomNumber1, 1);
           const randomNumber2 =
             numbers[Math.floor(Math.random() * (numbers.length - 1))];
-    
+
           const incorrectAnswers = question.current.answers.filter(
             (answer) => !answer.correct
           );
@@ -100,7 +101,7 @@ function App() {
             incorrectAnswers[randomNumber1].text = "";
             incorrectAnswers[randomNumber2].text = "";
           }
-    
+
           forceUpdate({});
         }
         break;
@@ -116,22 +117,29 @@ function App() {
         for (let i = 0; i < 3; i++) {
           const probability = Math.random();
           if (probability >= 0.1) {
-            const correctAnswer = question.current.answers.find(answer => answer.correct);
+            const correctAnswer = question.current.answers.find(
+              (answer) => answer.correct
+            );
             answers.push(correctAnswer.text);
           } else {
-            const incorrectAnswers = question.current.answers.filter(answer => !answer.correct);
-            const incorrectAnswer = incorrectAnswers[Math.floor(Math.random() * incorrectAnswers.length)];
+            const incorrectAnswers = question.current.answers.filter(
+              (answer) => !answer.correct
+            );
+            const incorrectAnswer =
+              incorrectAnswers[
+                Math.floor(Math.random() * incorrectAnswers.length)
+              ];
             answers.push(incorrectAnswer.text);
           }
         }
         setAudienceAnswers(answers);
         setIsAudienceAnswerVisible(true);
         break;
-      
+
       default:
         break;
     }
-  }
+  };
 
   // Only render the game content if the name is provided
   return (
@@ -152,9 +160,17 @@ function App() {
                       />
                     </div>
                   </div>
-                  <div className={isLifelineUsageVisible ? "lifeline-usage-container visible" : "lifeline-usage-container"}>
+                  <div
+                    className={
+                      isLifelineUsageVisible
+                        ? "lifeline-usage-container visible"
+                        : "lifeline-usage-container"
+                    }
+                  >
                     <LifelineUsageConfirmation
-                      handleLifelineUsageConfirmation={handleLifelineUsageConfirmation}
+                      handleLifelineUsageConfirmation={
+                        handleLifelineUsageConfirmation
+                      }
                       handleLifelineUsageCancel={handleLifelineUsageCancel}
                     />
                   </div>

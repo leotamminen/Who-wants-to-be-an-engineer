@@ -1,6 +1,6 @@
 const APIController = require("express").Router();
 const aiApiService = require("../services/aiApiService");
-const logger = require('../utils/logger');
+const logger = require("../utils/logger");
 
 APIController.get("/", async (req, res) => {
   try {
