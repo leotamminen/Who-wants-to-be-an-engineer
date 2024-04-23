@@ -45,11 +45,23 @@ const Lifelines = ({
 
   return (
     <div>
-      <button onClick={() => handleLifelineUse("fiftyFifty")} disabled={isFiftyFiftyUsed}>50:50</button>
-      <button onClick={() => handleLifelineUse("askFriend")} disabled={isAskFriendUsed}>Ask friend</button>
-      <button onClick={() => handleLifelineUse("askAudience")} disabled={isAskAudienceUsed}>Ask audience</button>
+      <button
+        onClick={() => handleLifelineUse("fiftyFifty")}
+        disabled={isFiftyFiftyUsed}
+        className={isFiftyFiftyUsed ? "fiftyfifty-button disabled" : "fiftyfifty-button"}
+      />
+      <button
+        onClick={() => handleLifelineUse("askFriend")}
+        disabled={isAskFriendUsed}
+        className={isAskFriendUsed ? "ask-friend-button disabled" : "ask-friend-button"}
+      />
+      <button
+        onClick={() => handleLifelineUse("askAudience")}
+        disabled={isAskAudienceUsed}
+        className={isAskAudienceUsed ? "ask-audience-button disabled" : "ask-audience-button"}
+      />
       <div className={isAskFriendBoxVisible ? "askFriendBoxContainer visible" : "askFriendBoxContainer"}>
-        <input
+        <textarea
           type="text"
           placeholder="Write here your question to friend"
           className="askFriendBox"
@@ -57,7 +69,12 @@ const Lifelines = ({
           onChange={handleChange}
           onKeyDown={handleKeyPress} // This makes sure enter key works also
         />
-        <button onClick={handleQuestionSend}>OK</button>
+        <button
+          onClick={handleQuestionSend}
+          className="ask-button"
+        >
+        Ask
+        </button>
       </div>
       <div>
         <div className={isAiAnswerVisible ? "aiAnswerContainer visible" : "aiAnswerContainer"}>

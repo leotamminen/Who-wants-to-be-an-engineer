@@ -178,7 +178,8 @@ h1 {
 
 .lock-in-button:hover,
 .username-button:hover,
-.lifeline-confirm-cancel-button:hover {
+.lifeline-confirm-cancel-button:hover,
+.ask-button:hover {
   background: #ca6608;
   box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
 }
@@ -257,6 +258,8 @@ h1 {
 
 .askFriendBox {
   color: black;
+  min-width: 300px;
+  min-height: auto;
 }
 
 .aiAnswerContainer {
@@ -300,7 +303,8 @@ h1 {
   flex-direction: column;
 }
 
-.lifeline-confirm-cancel-button {
+.lifeline-confirm-cancel-button,
+.ask-button {
   width: 45%;
   max-width: 500px;
   padding: 10px;
@@ -319,6 +323,108 @@ h1 {
   display: block;
   position: fixed; /* Position the div relative to the viewport */
   top: 10%; /* Align the top of the div to the vertical center of the viewport */
-  left: 45%; /* Align the left of the div to the horizontal center of the viewport */
+  left: 46.5%; /* Align the left of the div to the horizontal center of the viewport */
   transform: translate(-50%, -50%); /* Center the div */
+}
+
+.fiftyfifty-button {
+  margin: 3px;
+  background-image: url("../images/50.50.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  background-color: black;
+}
+
+.fiftyfifty-button.disabled {
+  margin: 3px;
+  background-image: url("../images/50.50_cross.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  background-color: black;
+}
+
+.fiftyfifty-button:hover {
+  transform: scale(1.1); /* Increase size on hover */
+}
+
+.ask-friend-button {
+  margin: 3px;
+  background-image: url("../images/phone-friend.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  background-color: black;
+}
+
+.ask-friend-button.disabled {
+  margin: 3px;
+  background-image: url("../images/phone-friend-cross.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  background-color: black;
+}
+
+.ask-friend-button:hover {
+  transform: scale(1.1); /* Increase size on hover */
+}
+
+.ask-audience-button {
+  margin: 3px;
+  background-image: url("../images/audience.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  background-color: black;
+}
+
+.ask-audience-button.disabled {
+  margin: 3px;
+  background-image: url("../images/audience_cross.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  background-color: black;
+}
+
+.ask-audience-button:hover {
+  transform: scale(1.1); /* Increase size on hover */
 }
