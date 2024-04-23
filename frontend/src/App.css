@@ -276,3 +276,11 @@ h1 {
 .audienceAnswerContainer.visible {
   display: block;
 }
+
+.lifelineUsageContainer {
+  display: none;
+}
+
+.lifelineUsageContainer.visible {
+  display: block;
+}

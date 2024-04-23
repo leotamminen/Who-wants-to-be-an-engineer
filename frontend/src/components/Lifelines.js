@@ -1,19 +1,25 @@
 import { useState } from "react";
 import lifelineService from "../services/lifelineService";
 
-const Lifelines = ({ question, handleFiftyFifty, isFiftyFiftyUsed }) => {
-  const [isAskFriendBoxVisible, setIsAskFriendBoxVisible] = useState(false);
+const Lifelines = ({
+  isFiftyFiftyUsed,
+  isAskFriendUsed,
+  isAskAudienceUsed,
+  isAskFriendBoxVisible,
+  setIsAskFriendBoxVisible,
+  isAudienceAnswerVisible,
+  audienceAnswers,
+  setIsLifelineUsageVisible,
+  setLifeline
+}) => {
   const [questionToFriend, setQuestionToFriend] = useState("");
   const [aiAnswer, setAiAnswer] = useState("");
   const [isAiAnswerVisible, setIsAiAnswerVisible] = useState(false);
-  const [isAskFriendUsed, setIsAskFriendUsed] = useState(false);
-  const [audienceAnswers, setAudienceAnswers] = useState([]);
-  const [isAudienceAnswerVisible, setIsAudienceAnswerVisible] = useState(false);
-  const [isAskAudienceUsed, setIsAskAudienceUsed] = useState(false);
 
-  const handleAskFriend = () => {
-    setIsAskFriendBoxVisible(true);
-  };
+  const handleLifelineUse = (lifeline) => {
+    setIsLifelineUsageVisible(true);
+    setLifeline(lifeline)
+  }
 
   const handleQuestionSend = async () => {
     try {
@@ -27,39 +33,21 @@ const Lifelines = ({ question, handleFiftyFifty, isFiftyFiftyUsed }) => {
     setIsAskFriendBoxVisible(false);
   };
 
+  const handleChange = (event) => {
+    setQuestionToFriend(event.target.value);
+  };
+
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       handleQuestionSend();
     }
   };
 
-  const handleChange = (event) => {
-    setQuestionToFriend(event.target.value);
-  };
-
-  const handleAskAudience = () => {
-    console.log(question);
-    const answers = [];
-    for (let i = 0; i < 3; i++) {
-      const probability = Math.random();
-      if (probability >= 0.1) {
-        const correctAnswer = question.answers.find(answer => answer.correct);
-        answers.push(correctAnswer.text);
-      } else {
-        const incorrectAnswers = question.answers.filter(answer => !answer.correct);
-        const incorrectAnswer = incorrectAnswers[Math.floor(Math.random() * incorrectAnswers.length)];
-        answers.push(incorrectAnswer.text);
-      }
-    }
-    setAudienceAnswers(answers);
-    setIsAudienceAnswerVisible(true);
-  }
-
   return (
     <div>
-      <button onClick={handleFiftyFifty}>50:50</button>
-      <button onClick={handleAskFriend}>Ask friend</button>
-      <button onClick={handleAskAudience}>Ask audience</button>
+      <button onClick={() => handleLifelineUse("fiftyFifty")} disabled={isFiftyFiftyUsed}>50:50</button>
+      <button onClick={() => handleLifelineUse("askFriend")} disabled={isAskFriendUsed}>Ask friend</button>
+      <button onClick={() => handleLifelineUse("askAudience")} disabled={isAskAudienceUsed}>Ask audience</button>
       <div className={isAskFriendBoxVisible ? "askFriendBoxContainer visible" : "askFriendBoxContainer"}>
         <input
           type="text"

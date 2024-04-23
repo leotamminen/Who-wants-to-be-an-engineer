@@ -12,6 +12,7 @@ import About from "./components/About"; // Import the About component
 
 import apiQuestionService from "./services/apiQuestionService";
 import dbQuestionService from "./services/dbQuestionService";
+import LifelineUsageConfirmation from "./components/LifelineUsageConfirmation";
 
 function App() {
   const [name, setName] = useState(null);
@@ -23,7 +24,16 @@ function App() {
   const question = useRef(null);
   const nextQuestion = useRef(null);
   const [, forceUpdate] = useState();
+
   const [isFiftyFiftyUsed, setIsFiftyFiftyUsed] = useState(false);
+  const [isAskFriendUsed, setIsAskFriendUsed] = useState(false);
+  const [isAskAudienceUsed, setIsAskAudienceUsed] = useState(false);
+
+  const [isLifelineUsageVisible, setIsLifelineUsageVisible] = useState(false);
+  const [isAskFriendBoxVisible, setIsAskFriendBoxVisible] = useState(false);
+  const [audienceAnswers, setAudienceAnswers] = useState([]);
+  const [isAudienceAnswerVisible, setIsAudienceAnswerVisible] = useState(false);
+  const [lifeline, setLifeline] = useState("");
 
   // Update earned money when the question number changes
   useEffect(() => {
@@ -61,27 +71,65 @@ function App() {
     setIsMillionaire(true);
   };
 
-  const lifelineUsageConfirmation = (setIsLifelineUsed) => {};
-
-  const handleFiftyFifty = () => {
-    // TODO: implement confirmation message
-
-    if (question.current) {
-      const numbers = [0, 1, 2];
-      const randomNumber1 = numbers[Math.floor(Math.random() * numbers.length)];
-      numbers.splice(randomNumber1, 1);
-      const randomNumber2 =
-        numbers[Math.floor(Math.random() * (numbers.length - 1))];
-
-      const incorrectAnswers = question.current.answers.filter(
-        (answer) => !answer.correct
-      );
-      incorrectAnswers[randomNumber1].text = "";
-      incorrectAnswers[randomNumber2].text = "";
-
-      forceUpdate({});
-    }
+  const handleLifelineUsageConfirmation = () => {
+    setIsLifelineUsageVisible(false);
+    executeLifeline(lifeline);
   };
+
+  const handleLifelineUsageCancel = () => {
+    setIsLifelineUsageVisible(false);
+  };
+
+  const executeLifeline = (lifeline) => {
+    switch (lifeline) {
+      case "fiftyFifty":
+        setIsFiftyFiftyUsed(true);
+        if (question.current) {
+          const numbers = [0, 1, 2];
+          const randomNumber1 = numbers[Math.floor(Math.random() * numbers.length)];
+          numbers.splice(randomNumber1, 1);
+          const randomNumber2 =
+            numbers[Math.floor(Math.random() * (numbers.length - 1))];
+    
+          const incorrectAnswers = question.current.answers.filter(
+            (answer) => !answer.correct
+          );
+          if (incorrectAnswers) {
+            incorrectAnswers[randomNumber1].text = "";
+            incorrectAnswers[randomNumber2].text = "";
+          }
+    
+          forceUpdate({});
+        }
+        break;
+
+      case "askFriend":
+        setIsAskFriendUsed(true);
+        setIsAskFriendBoxVisible(true);
+        break;
+
+      case "askAudience":
+        setIsAskAudienceUsed(true);
+        const answers = [];
+        for (let i = 0; i < 3; i++) {
+          const probability = Math.random();
+          if (probability >= 0.1) {
+            const correctAnswer = question.current.answers.find(answer => answer.correct);
+            answers.push(correctAnswer.text);
+          } else {
+            const incorrectAnswers = question.current.answers.filter(answer => !answer.correct);
+            const incorrectAnswer = incorrectAnswers[Math.floor(Math.random() * incorrectAnswers.length)];
+            answers.push(incorrectAnswer.text);
+          }
+        }
+        setAudienceAnswers(answers);
+        setIsAudienceAnswerVisible(true);
+        break;
+      
+      default:
+        break;
+    }
+  }
 
   // Only render the game content if the name is provided
   return (
@@ -104,9 +152,21 @@ function App() {
                   </div>
                   <div>
                     <Lifelines
-                      question={question.current}
-                      handleFiftyFifty={handleFiftyFifty}
                       isFiftyFiftyUsed={isFiftyFiftyUsed}
+                      isAskFriendUsed={isAskFriendUsed}
+                      isAskAudienceUsed={isAskAudienceUsed}
+                      isAskFriendBoxVisible={isAskFriendBoxVisible}
+                      setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
+                      isAudienceAnswerVisible={isAudienceAnswerVisible}
+                      audienceAnswers={audienceAnswers}
+                      setIsLifelineUsageVisible={setIsLifelineUsageVisible}
+                      setLifeline={setLifeline}
+                    />
+                  </div>
+                  <div className={isLifelineUsageVisible ? "lifelineUsageContainer visible" : "lifelineUsageContainer"}>
+                    <LifelineUsageConfirmation
+                      handleLifelineUsageConfirmation={handleLifelineUsageConfirmation}
+                      handleLifelineUsageCancel={handleLifelineUsageCancel}
                     />
                   </div>
                   <div className="game">
