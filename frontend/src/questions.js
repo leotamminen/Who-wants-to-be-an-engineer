@@ -1,74 +1,239 @@
-// First test questions. Only 1 per difficulty at this point
+// Hard coded questions. Still only 1 per difficulty
 const questions = [
   {
-    // id: 1,
-    question: "Milloin on elokuu?",
+    question:
+      "In computer architecture, what is the role of the Central Processing Unit (CPU) within a computer system?",
     answers: [
+      { text: "To store and manage data", correct: false },
       {
-        text: "Syyskuun jälkeen",
-        correct: false,
-      },
-      {
-        text: "Lokakuuta ennen",
+        text: "To perform calculations and execute instructions",
         correct: true,
       },
       {
-        text: "Kesä- ja heinäkuun välissä",
+        text: "To control the flow of data between components",
         correct: false,
       },
       {
-        text: "Ennen heinäkuuta",
+        text: "To provide a user interface for interacting with the computer",
         correct: false,
       },
     ],
+    difficulty: 1,
   },
   {
-    // id: 2,
-    question: "Mikä on maailman suurin (ei korkein) vuoristo?",
+    question:
+      "What is the primary function of a compiler in the process of creating software?",
+    answers: [
+      { text: "Detect and fix errors in the code", correct: false },
+      { text: "Document the functionality of the program", correct: false },
+      { text: "Compress the size of the final program", correct: false },
+      { text: "Translate high-level code into machine code", correct: true },
+    ],
+    difficulty: 2,
+  },
+  {
+    question: "What is the main purpose of a firewall in a computer network?",
+    answers: [
+      { text: "To improve internet browsing speed", correct: false },
+      {
+        text: "To control and filter incoming and outgoing traffic",
+        correct: true,
+      },
+      { text: "To store user data and files", correct: false },
+      { text: "To display visual information on the screen", correct: false },
+    ],
+    difficulty: 3,
+  },
+  {
+    question:
+      "What is the purpose of a Domain Name System (DNS) in the internet?",
+    answers: [
+      { text: "To encrypt communication between devices", correct: false },
+      { text: "To translate domain names into IP addresses", correct: true },
+      { text: "To store and manage user accounts", correct: false },
+      { text: "To display search results in a web browser", correct: false },
+    ],
+    difficulty: 4,
+  },
+  {
+    question:
+      "What is the primary function of a web server in a computer network?",
+    answers: [
+      { text: "To filter incoming and outgoing traffic", correct: false },
+      { text: "To store and manage website content", correct: true },
+      { text: "To browse the internet and access web pages", correct: false },
+      { text: "To protect against cyberattacks and malware", correct: false },
+    ],
+    difficulty: 5,
+  },
+  {
+    question:
+      "In fluid mechanics, what parameter represents the resistance of a fluid to shearing forces?",
+    answers: [
+      { text: "Density", correct: false },
+      { text: "Viscosity", correct: true },
+      { text: "Pressure", correct: false },
+      { text: "Surface tension", correct: false },
+    ],
+    difficulty: 6,
+  },
+  {
+    question:
+      "During a tensile strength test, a cylindrical metal rod is subjected to a gradually increasing axial load. What property of the material determines the amount of elongation the rod experiences before failure?",
+    answers: [
+      { text: "Young's Modulus", correct: false },
+      { text: "Poisson's Ratio", correct: false },
+      { text: "Ultimate Tensile Strength", correct: false },
+      { text: "Ductility", correct: true },
+    ],
+    difficulty: 7,
+  },
+  {
+    question:
+      "When designing a control system for a machine, what is the primary function of feedback control?",
     answers: [
       {
-        text: "Atlasvuoret",
+        text: "To pre-program a sequence of actions for the machine",
         correct: false,
       },
       {
-        text: "Pyreneet",
-        correct: false,
-      },
-      {
-        text: "Andit",
+        text: "To continuously monitor the machine's output and adjust inputs accordingly",
         correct: true,
       },
       {
-        text: "Uralvuoristo",
+        text: "To increase the power output of the machine's actuators",
+        correct: false,
+      },
+      {
+        text: "To simplify the overall design of the control system",
         correct: false,
       },
     ],
+    difficulty: 8,
   },
   {
-    // id: 3,
-    question: "Mistä Martti Ahtisaari sai Nobel-palkinnon?",
+    question: "What is the main function of a culvert in civil engineering?",
     answers: [
       {
-        text: "Presidenttiydestä",
+        text: "To support and distribute the weight of a bridge",
         correct: false,
       },
       {
-        text: "Tieteestä",
-        correct: false,
-      },
-      {
-        text: "Rauhasta",
+        text: "To allow water to flow under a road or other structure",
         correct: true,
       },
       {
-        text: "Hyväntekeväisyydestä",
+        text: "To provide additional support for a building foundation",
+        correct: false,
+      },
+      {
+        text: "To create a sound barrier along a busy highway",
         correct: false,
       },
     ],
+    difficulty: 9,
   },
   {
-    // id: 4,
-    question: "Mikä seuraavista EI ole ohjelmointikieli?",
+    question:
+      "In a Geographic Information System (GIS), what type of data represents the spatial features of geographic elements?",
+    answers: [
+      { text: "Attribute data (descriptive information)", correct: false },
+      { text: "Metadata (information about the data itself)", correct: false },
+      { text: "Spatial data (locations and shapes)", correct: true },
+      {
+        text: "Imagery data (aerial or satellite photographs)",
+        correct: false,
+      },
+    ],
+    difficulty: 10,
+  },
+  {
+    question:
+      "What is the primary function of a transformer in an electrical power grid?",
+    answers: [
+      {
+        text: "To convert alternating current (AC) to direct current (DC)",
+        correct: false,
+      },
+      {
+        text: "To transmit electricity over long distances with minimal energy loss",
+        correct: false,
+      },
+      { text: "To store electrical energy for later use", correct: false },
+      {
+        text: "To regulate the voltage of electricity for different applications",
+        correct: true,
+      },
+    ],
+    difficulty: 11,
+  },
+  {
+    question:
+      "What is the primary benefit of using digital twins in the manufacturing process?",
+    answers: [
+      {
+        text: "Improved safety by simulating potential hazards before implementation",
+        correct: false,
+      },
+      {
+        text: "Elimination of the need for physical prototypes",
+        correct: false,
+      },
+      {
+        text: "Reduced production costs through optimized processes",
+        correct: true,
+      },
+      {
+        text: "Easier replacement of malfunctioning equipment with readily available parts",
+        correct: false,
+      },
+    ],
+    difficulty: 12,
+  },
+  {
+    question:
+      "During the design phase of a new product, what is the main advantage of using computer-aided design (CAD) software?",
+    answers: [
+      {
+        text: "Easier collaboration and communication between design teams",
+        correct: false,
+      },
+      {
+        text: "Automatic generation of manufacturing instructions for the product",
+        correct: false,
+      },
+      {
+        text: "Reduced cost of materials used in the final product",
+        correct: false,
+      },
+      {
+        text: "Reduced need for manual drafting and improved design accuracy",
+        correct: true,
+      },
+    ],
+    difficulty: 13,
+  },
+  {
+    question: "What is the primary function of a clutch in a car's drivetrain?",
+    answers: [
+      {
+        text: "To increase the torque delivered to the wheels",
+        correct: false,
+      },
+      { text: "To change gears within the transmission", correct: false },
+      {
+        text: "To smoothly engage and disengage the engine from the transmission",
+        correct: true,
+      },
+      {
+        text: "To deliver power from the engine to the differential",
+        correct: false,
+      },
+    ],
+    difficulty: 14,
+  },
+  {
+    question: "Which of the following is NOT an programming language?",
     answers: [
       {
         text: "Cython",
@@ -87,251 +252,7 @@ const questions = [
         correct: false,
       },
     ],
-  },
-  {
-    // id: 5,
-    question: "Millä ohjelmointikielellä tämä ohjelma on tehty?",
-    answers: [
-      {
-        text: "Python, MongoDB Atlas, MySQL ja HTML",
-        correct: false,
-      },
-      {
-        text: "JavaScript, CSS ja HTML",
-        correct: true,
-      },
-      {
-        text: "React, Javascript, HTML ja CSS",
-        correct: true,
-      },
-      {
-        text: "Python, Django ja Flask",
-        correct: false,
-      },
-    ],
-  },
-  {
-    // id: 6,
-    question: "Kenen kuva oli viimeisessä 20 markan setelissä?",
-    answers: [
-      {
-        text: "Aleksis Kiven",
-        correct: false,
-      },
-      {
-        text: "Väinö Linnan",
-        correct: true,
-      },
-      {
-        text: "Paavo Nurmen",
-        correct: false,
-      },
-      {
-        text: "Urho Kekkosen",
-        correct: false,
-      },
-    ],
-  },
-  {
-    // id: 7,
-    question: "Montako tuhatta on miljoona?",
-    answers: [
-      {
-        text: "Yksi",
-        correct: false,
-      },
-      {
-        text: "Kymmenen",
-        correct: false,
-      },
-      {
-        text: "Sata",
-        correct: false,
-      },
-      {
-        text: "Tuhat",
-        correct: true,
-      },
-    ],
-  },
-  {
-    // id: 8,
-    question: "Millä nimellä muusikko Petri Tiili tunnetaan paremmin?",
-    answers: [
-      {
-        text: "Neumann",
-        correct: false,
-      },
-      {
-        text: "Pelle Miljoona",
-        correct: true,
-      },
-      {
-        text: "Paleface",
-        correct: false,
-      },
-      {
-        text: "Andy McCoy",
-        correct: false,
-      },
-    ],
-  },
-  {
-    // id: 9,
-    question: "Minkä lajin legendaarisia nimiä on Kareem Abdul-Jabbar?",
-    answers: [
-      {
-        text: "Koripallon",
-        correct: true,
-      },
-      {
-        text: "Baseballin",
-        correct: false,
-      },
-      {
-        text: "Golfin",
-        correct: false,
-      },
-      {
-        text: "Nyrkkeilyn",
-        correct: false,
-      },
-    ],
-  },
-  {
-    // id: 10,
-    question: "Mikä on Ruotsin pääkaupunki?",
-    answers: [
-      {
-        text: "Tuklehtinen",
-        correct: false,
-      },
-      {
-        text: "Tuklinga",
-        correct: false,
-      },
-      {
-        text: "Tuklinnonmaa",
-        correct: false,
-      },
-      {
-        text: "Tukholma",
-        correct: true,
-      },
-    ],
-  },
-  {
-    // id: 11,
-    question: "Missä kaupungissa sijaitsee kuuluisa Yyterin hiekkaranta?",
-    answers: [
-      {
-        text: "Lahdessa",
-        correct: false,
-      },
-      {
-        text: "Kemissä",
-        correct: false,
-      },
-      {
-        text: "Porissa",
-        correct: true,
-      },
-      {
-        text: "Tampereella",
-        correct: false,
-      },
-    ],
-  },
-  {
-    // id: 12,
-    question:
-      "Kuka on kirjoittanut historiallisen romaanin Sinuhe Egyptiläinen?",
-    answers: [
-      {
-        text: "Volter Kilpi",
-        correct: false,
-      },
-      {
-        text: "Katri Vala",
-        correct: false,
-      },
-      {
-        text: "Mika Waltari",
-        correct: true,
-      },
-      {
-        text: "Frans Emil Sillanpää",
-        correct: false,
-      },
-    ],
-  },
-  {
-    // id: 13,
-    question:
-      "Kuka on maalannut Teuvan kirkon alttaritaulun Kymmenen neitsyttä?",
-    answers: [
-      {
-        text: "Tove Jansson",
-        correct: true,
-      },
-      {
-        text: "Outi Heiskanen",
-        correct: false,
-      },
-      {
-        text: "Hugo Simberg",
-        correct: false,
-      },
-      {
-        text: "Helene Schjerfbeck",
-        correct: false,
-      },
-    ],
-  },
-  {
-    // id: 14,
-    question: "Minkä eläimen tieteellinen nimi on Canis lupus?",
-    answers: [
-      {
-        text: "Hirvi",
-        correct: false,
-      },
-      {
-        text: "Ilves",
-        correct: false,
-      },
-      {
-        text: "Kettu",
-        correct: false,
-      },
-      {
-        text: "Susi",
-        correct: true,
-      },
-    ],
-  },
-  {
-    // id: 15,
-    question:
-      "Missä paikassa Auric Goldfinger suunnittelee räjäyttävänsä ydinpommin elokuvassa 007 ja kultasormi?",
-    answers: [
-      {
-        text: "Fort Knox",
-        correct: true,
-      },
-      {
-        text: "Pentagon",
-        correct: false,
-      },
-      {
-        text: "Buckinghamin palatsi",
-        correct: false,
-      },
-      {
-        text: "Sydneyn oopperatalo",
-        correct: false,
-      },
-    ],
+    difficulty: 15,
   },
 ];
 
