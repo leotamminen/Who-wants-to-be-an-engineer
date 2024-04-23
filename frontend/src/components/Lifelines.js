@@ -45,7 +45,7 @@ const Lifelines = ({
   };
 
   return (
-    <div>
+    <div className="lifelines">
       <button
         onClick={() => handleLifelineUse("fiftyFifty")}
         disabled={isFiftyFiftyUsed}
@@ -68,7 +68,7 @@ const Lifelines = ({
           className="askFriendBox"
           value={questionToFriend}
           onChange={handleChange}
-          onKeyDown={handleKeyPress} // This makes sure enter key works also
+          onKeyDown={handleKeyPress}
         />
         <button
           onClick={handleQuestionSend}
@@ -82,7 +82,9 @@ const Lifelines = ({
           {aiAnswer}
         </div>
         <div className={isAudienceAnswerVisible ? "audienceAnswerContainer visible" : "audienceAnswerContainer"}>
-          Viewer 1: {audienceAnswers[0]}, viewer 2: {audienceAnswers[1]}, viewer 3: {audienceAnswers[2]}
+        <p>Viewer 1: {audienceAnswers[0]}</p>
+        <p>Viewer 2: {audienceAnswers[1]}</p>
+        <p>Viewer 3: {audienceAnswers[2]}</p>        
         </div>
       </div>
     </div>

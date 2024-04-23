@@ -6,6 +6,7 @@
 
 body {
   background-color: #13075a;
+  min-height: 100vh;
 }
 
 h1 {
@@ -21,10 +22,7 @@ h1 {
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-image: url("../images/boss_background.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 135vh;
+  min-height: 100vh;
 }
 
 .game {
@@ -40,8 +38,10 @@ h1 {
 }
 
 .money-list {
+  position: relative;
+  top: 15%;
   background-color: black;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   list-style: none;
   display: flex;
@@ -72,6 +72,10 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../images/boss_background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100vh;
 }
 
 .question {
@@ -123,14 +127,17 @@ h1 {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   60% {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   80% {
     background: #10a742;
     box-shadow: 0 0 5px #0a5415, 0 0 15px #0a5415, 0 0 25px #61ce76;
   }
+
   100% {
     background: #10a742;
     box-shadow: 0 0 5px #0a5415, 0 0 15px #0a5415, 0 0 25px #61ce76;
@@ -146,14 +153,17 @@ h1 {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   60% {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   80% {
     background: #bb280f;
     box-shadow: 0 0 5px #540a07, 0 0 15px #540a07, 0 0 25px #d16161;
   }
+
   100% {
     background: #bb280f;
     box-shadow: 0 0 5px #540a07, 0 0 15px #540a07, 0 0 25px #d16161;
@@ -168,7 +178,6 @@ h1 {
   margin: 15px;
   text-align: center;
   background: linear-gradient(#110447, #091270);
-  color: #fff;
   border: 1px solid #fff;
   border-radius: 60px;
   font-weight: 500;
@@ -257,9 +266,9 @@ h1 {
 }
 
 .askFriendBox {
+  max-width: 135px;
   color: black;
-  min-width: 300px;
-  min-height: auto;
+  overflow-y: auto;
 }
 
 .aiAnswerContainer {
@@ -290,15 +299,15 @@ h1 {
 
 .lifeline-usage-container.visible {
   display: block;
-  position: fixed; /* Position the div relative to the viewport */
-  top: 50%; /* Align the top of the div to the vertical center of the viewport */
-  left: 50%; /* Align the left of the div to the horizontal center of the viewport */
-  transform: translate(-50%, -50%); /* Center the div */
-  width: 50%; /* Take the full width of the viewport */
-  height: 50%; /* Take the full height of the viewport */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
   background: linear-gradient(#260a99, #050a3a);
   border-radius: 10px;
-  z-index: 9999; /* Set a high z-index value to ensure it's on top */
+  z-index: 9999;
 }
 
 .lifeline-confirm-cancel-container {
@@ -312,12 +321,12 @@ h1 {
 .lifeline-confirm-cancel-button,
 .ask-button {
   width: 45%;
+  min-width: 100px;
   max-width: 500px;
   padding: 10px;
   margin: 15px;
   text-align: center;
   background: linear-gradient(#110447, #091270);
-  color: #fff;
   border: 1px solid #fff;
   border-radius: 60px;
   font-weight: 500;
@@ -326,11 +335,9 @@ h1 {
 }
 
 .lifelines {
-  display: block;
-  position: fixed; /* Position the div relative to the viewport */
-  top: 10%; /* Align the top of the div to the vertical center of the viewport */
-  left: 46.5%; /* Align the left of the div to the horizontal center of the viewport */
-  transform: translate(-50%, -50%); /* Center the div */
+  display: flex;
+  flex-direction: column;
+  background: none;
 }
 
 .fiftyfifty-button {
@@ -344,7 +351,7 @@ h1 {
   border-radius: 50% / 50% 50%;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  transition: transform 0.2s ease;
   background-color: black;
 }
 
@@ -353,7 +360,7 @@ h1 {
 }
 
 .fiftyfifty-button:hover {
-  transform: scale(1.1); /* Increase size on hover */
+  transform: scale(1.1);
 }
 
 .ask-friend-button {
@@ -367,7 +374,7 @@ h1 {
   border-radius: 50% / 50% 50%;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  transition: transform 0.2s ease;
   background-color: black;
 }
 
@@ -376,7 +383,7 @@ h1 {
 }
 
 .ask-friend-button:hover {
-  transform: scale(1.1); /* Increase size on hover */
+  transform: scale(1.1);
 }
 
 .ask-audience-button {
@@ -390,7 +397,7 @@ h1 {
   border-radius: 50% / 50% 50%;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s ease; /* Add transition for smooth scaling */
+  transition: transform 0.2s ease;
   background-color: black;
 }
 
@@ -399,5 +406,5 @@ h1 {
 }
 
 .ask-audience-button:hover {
-  transform: scale(1.1); /* Increase size on hover */
+  transform: scale(1.1);
 }
