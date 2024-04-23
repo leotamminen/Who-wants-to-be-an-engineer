@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Timer = ({ setTimeOut, questionNumber }) => {
   const [timer, setTimer] = useState(60);
@@ -13,7 +13,7 @@ const Timer = ({ setTimeOut, questionNumber }) => {
   }, [timer, setTimeOut]);
 
   useEffect(() => {
-    setTimer(6000);
+    setTimer(60);
   }, [questionNumber]);
   return timer;
 };

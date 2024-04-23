@@ -6,6 +6,7 @@
 
 body {
   background-color: #13075a;
+  min-height: 100vh;
 }
 
 h1 {
@@ -21,6 +22,7 @@ h1 {
   flex: 1;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 .game {
@@ -30,14 +32,16 @@ h1 {
 }
 
 .money-container {
+  max-height: 100%;
   max-width: 25%;
-  padding-top: 15px;
-  padding-left: 1px;
+  padding: 1px;
 }
 
 .money-list {
+  position: relative;
+  top: 15%;
   background-color: black;
-  padding: 25px;
+  padding: 20px;
   border-radius: 10px;
   list-style: none;
   display: flex;
@@ -52,8 +56,6 @@ h1 {
 }
 
 .timer {
-  left: 15px;
-  top: 15px;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -70,6 +72,10 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url("../images/boss_background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100vh;
 }
 
 .question {
@@ -121,14 +127,17 @@ h1 {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   60% {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   80% {
     background: #10a742;
     box-shadow: 0 0 5px #0a5415, 0 0 15px #0a5415, 0 0 25px #61ce76;
   }
+
   100% {
     background: #10a742;
     box-shadow: 0 0 5px #0a5415, 0 0 15px #0a5415, 0 0 25px #61ce76;
@@ -144,14 +153,17 @@ h1 {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   60% {
     background: #ca6608;
     box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
   }
+
   80% {
     background: #bb280f;
     box-shadow: 0 0 5px #540a07, 0 0 15px #540a07, 0 0 25px #d16161;
   }
+
   100% {
     background: #bb280f;
     box-shadow: 0 0 5px #540a07, 0 0 15px #540a07, 0 0 25px #d16161;
@@ -166,7 +178,6 @@ h1 {
   margin: 15px;
   text-align: center;
   background: linear-gradient(#110447, #091270);
-  color: #fff;
   border: 1px solid #fff;
   border-radius: 60px;
   font-weight: 500;
@@ -175,7 +186,9 @@ h1 {
 }
 
 .lock-in-button:hover,
-.username-button:hover {
+.username-button:hover,
+.lifeline-confirm-cancel-button:hover,
+.ask-button:hover {
   background: #ca6608;
   box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
 }
@@ -183,11 +196,6 @@ h1 {
 .item.active {
   background: radial-gradient(#ff8800, #863c04);
   box-shadow: 0 0 5px orange, 0 0 25px orange;
-}
-
-.item {
-  padding: 5px;
-  border-radius: 5px;
 }
 
 .money {
@@ -258,7 +266,9 @@ h1 {
 }
 
 .askFriendBox {
+  max-width: 135px;
   color: black;
+  overflow-y: auto;
 }
 
 .aiAnswerContainer {
@@ -267,6 +277,9 @@ h1 {
 
 .aiAnswerContainer.visible {
   display: block;
+  background: linear-gradient(#260a99, #050a3a);
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .audienceAnswerContainer {
@@ -275,12 +288,123 @@ h1 {
 
 .audienceAnswerContainer.visible {
   display: block;
+  background: linear-gradient(#260a99, #050a3a);
+  border-radius: 10px;
+  padding: 10px;
 }
 
-.lifelineUsageContainer {
+.lifeline-usage-container {
   display: none;
 }
 
-.lifelineUsageContainer.visible {
+.lifeline-usage-container.visible {
   display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background: linear-gradient(#260a99, #050a3a);
+  border-radius: 10px;
+  z-index: 9999;
+}
+
+.lifeline-confirm-cancel-container {
+  margin: 9vh 10vh 9vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lifeline-confirm-cancel-button,
+.ask-button {
+  width: 45%;
+  min-width: 100px;
+  max-width: 500px;
+  padding: 10px;
+  margin: 15px;
+  text-align: center;
+  background: linear-gradient(#110447, #091270);
+  border: 1px solid #fff;
+  border-radius: 60px;
+  font-weight: 500;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.lifelines {
+  display: flex;
+  flex-direction: column;
+  background: none;
+}
+
+.fiftyfifty-button {
+  margin: 3px;
+  background-image: url("../images/50.50.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background-color: black;
+}
+
+.fiftyfifty-button.disabled {
+  background-image: url("../images/50.50_cross.png");
+}
+
+.fiftyfifty-button:hover {
+  transform: scale(1.1);
+}
+
+.ask-friend-button {
+  margin: 3px;
+  background-image: url("../images/phone-friend.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background-color: black;
+}
+
+.ask-friend-button.disabled {
+  background-image: url("../images/phone-friend-cross.png");
+}
+
+.ask-friend-button:hover {
+  transform: scale(1.1);
+}
+
+.ask-audience-button {
+  margin: 3px;
+  background-image: url("../images/audience.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 78px;
+  height: 60px;
+  border-radius: 50% / 50% 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background-color: black;
+}
+
+.ask-audience-button.disabled {
+  background-image: url("../images/audience_cross.png");
+}
+
+.ask-audience-button:hover {
+  transform: scale(1.1);
 }

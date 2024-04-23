@@ -10,11 +10,12 @@ const Lifelines = ({
   isAudienceAnswerVisible,
   audienceAnswers,
   setIsLifelineUsageVisible,
-  setLifeline
+  setLifeline,
+  isAiAnswerVisible,
+  setIsAiAnswerVisible
 }) => {
   const [questionToFriend, setQuestionToFriend] = useState("");
   const [aiAnswer, setAiAnswer] = useState("");
-  const [isAiAnswerVisible, setIsAiAnswerVisible] = useState(false);
 
   const handleLifelineUse = (lifeline) => {
     setIsLifelineUsageVisible(true);
@@ -44,27 +45,46 @@ const Lifelines = ({
   };
 
   return (
-    <div>
-      <button onClick={() => handleLifelineUse("fiftyFifty")} disabled={isFiftyFiftyUsed}>50:50</button>
-      <button onClick={() => handleLifelineUse("askFriend")} disabled={isAskFriendUsed}>Ask friend</button>
-      <button onClick={() => handleLifelineUse("askAudience")} disabled={isAskAudienceUsed}>Ask audience</button>
+    <div className="lifelines">
+      <button
+        onClick={() => handleLifelineUse("fiftyFifty")}
+        disabled={isFiftyFiftyUsed}
+        className={isFiftyFiftyUsed ? "fiftyfifty-button disabled" : "fiftyfifty-button"}
+      />
+      <button
+        onClick={() => handleLifelineUse("askFriend")}
+        disabled={isAskFriendUsed}
+        className={isAskFriendUsed ? "ask-friend-button disabled" : "ask-friend-button"}
+      />
+      <button
+        onClick={() => handleLifelineUse("askAudience")}
+        disabled={isAskAudienceUsed}
+        className={isAskAudienceUsed ? "ask-audience-button disabled" : "ask-audience-button"}
+      />
       <div className={isAskFriendBoxVisible ? "askFriendBoxContainer visible" : "askFriendBoxContainer"}>
-        <input
+        <textarea
           type="text"
           placeholder="Write here your question to friend"
           className="askFriendBox"
           value={questionToFriend}
           onChange={handleChange}
-          onKeyDown={handleKeyPress} // This makes sure enter key works also
+          onKeyDown={handleKeyPress}
         />
-        <button onClick={handleQuestionSend}>OK</button>
+        <button
+          onClick={handleQuestionSend}
+          className="ask-button"
+        >
+        Ask
+        </button>
       </div>
       <div>
         <div className={isAiAnswerVisible ? "aiAnswerContainer visible" : "aiAnswerContainer"}>
           {aiAnswer}
         </div>
         <div className={isAudienceAnswerVisible ? "audienceAnswerContainer visible" : "audienceAnswerContainer"}>
-          Viewer 1 thinks the correct answer is {audienceAnswers[0]}, viewer 2 says {audienceAnswers[1]}, and viewer 3 thinks {audienceAnswers[2]} is the correct one
+        <p>Viewer 1: {audienceAnswers[0]}</p>
+        <p>Viewer 2: {audienceAnswers[1]}</p>
+        <p>Viewer 3: {audienceAnswers[2]}</p>        
         </div>
       </div>
     </div>

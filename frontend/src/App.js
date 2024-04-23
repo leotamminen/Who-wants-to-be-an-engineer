@@ -20,7 +20,7 @@ function App() {
   const [timeOut, setTimeOut] = useState(false);
   const [answersLocked, setAnswersLocked] = useState(false);
   const [isMillionaire, setIsMillionaire] = useState(false);
-  const [earnedMoney, setEarnedMoney] = useState("0 €");
+  const [earnedMoney, setEarnedMoney] = useState("0 cr");
   const question = useRef(null);
   const nextQuestion = useRef(null);
   const [, forceUpdate] = useState();
@@ -28,7 +28,7 @@ function App() {
   const [isFiftyFiftyUsed, setIsFiftyFiftyUsed] = useState(false);
   const [isAskFriendUsed, setIsAskFriendUsed] = useState(false);
   const [isAskAudienceUsed, setIsAskAudienceUsed] = useState(false);
-
+  const [isAiAnswerVisible, setIsAiAnswerVisible] = useState(false);
   const [isLifelineUsageVisible, setIsLifelineUsageVisible] = useState(false);
   const [isAskFriendBoxVisible, setIsAskFriendBoxVisible] = useState(false);
   const [audienceAnswers, setAudienceAnswers] = useState([]);
@@ -42,6 +42,8 @@ function App() {
       setEarnedMoney(
         studyPoints.find((item) => item.id === questionNumber - 1).amount
       );
+    setIsAiAnswerVisible(false);
+    setIsAudienceAnswerVisible(false);
   }, [questionNumber]);
 
   useEffect(() => {
@@ -150,20 +152,7 @@ function App() {
                       />
                     </div>
                   </div>
-                  <div>
-                    <Lifelines
-                      isFiftyFiftyUsed={isFiftyFiftyUsed}
-                      isAskFriendUsed={isAskFriendUsed}
-                      isAskAudienceUsed={isAskAudienceUsed}
-                      isAskFriendBoxVisible={isAskFriendBoxVisible}
-                      setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
-                      isAudienceAnswerVisible={isAudienceAnswerVisible}
-                      audienceAnswers={audienceAnswers}
-                      setIsLifelineUsageVisible={setIsLifelineUsageVisible}
-                      setLifeline={setLifeline}
-                    />
-                  </div>
-                  <div className={isLifelineUsageVisible ? "lifelineUsageContainer visible" : "lifelineUsageContainer"}>
+                  <div className={isLifelineUsageVisible ? "lifeline-usage-container visible" : "lifeline-usage-container"}>
                     <LifelineUsageConfirmation
                       handleLifelineUsageConfirmation={handleLifelineUsageConfirmation}
                       handleLifelineUsageCancel={handleLifelineUsageCancel}
@@ -179,15 +168,30 @@ function App() {
                     ) : isMillionaire ? (
                       <GameWinner className="game-over" />
                     ) : (
-                      <Quiz
-                        question={question}
-                        nextQuestion={nextQuestion}
-                        questionNumber={questionNumber}
-                        setQuestionNumber={setQuestionNumber}
-                        setTimeOut={setTimeOut}
-                        setAnswersLocked={setAnswersLocked}
-                        handleBecomeMillionaire={handleBecomeMillionaire}
-                      />
+                      <>
+                        <Lifelines
+                          isFiftyFiftyUsed={isFiftyFiftyUsed}
+                          isAskFriendUsed={isAskFriendUsed}
+                          isAskAudienceUsed={isAskAudienceUsed}
+                          isAskFriendBoxVisible={isAskFriendBoxVisible}
+                          setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
+                          isAudienceAnswerVisible={isAudienceAnswerVisible}
+                          audienceAnswers={audienceAnswers}
+                          setIsLifelineUsageVisible={setIsLifelineUsageVisible}
+                          setLifeline={setLifeline}
+                          isAiAnswerVisible={isAiAnswerVisible}
+                          setIsAiAnswerVisible={setIsAiAnswerVisible}
+                        />
+                        <Quiz
+                          question={question}
+                          nextQuestion={nextQuestion}
+                          questionNumber={questionNumber}
+                          setQuestionNumber={setQuestionNumber}
+                          setTimeOut={setTimeOut}
+                          setAnswersLocked={setAnswersLocked}
+                          handleBecomeMillionaire={handleBecomeMillionaire}
+                        />
+                      </>
                     )}
                   </div>
                 </div>
@@ -198,7 +202,7 @@ function App() {
                         <li
                           key={item.id}
                           className={
-                            questionNumber === item.id ? "item active" : "item"
+                            questionNumber === item.id ? "item active" : ""
                           }
                         >
                           <h5 className="amount">{item.amount}</h5>
