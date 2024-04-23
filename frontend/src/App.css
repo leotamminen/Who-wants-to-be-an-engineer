@@ -21,6 +21,10 @@ h1 {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background-image: url("../images/boss_background.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 135vh;
 }
 
 .game {
@@ -30,14 +34,14 @@ h1 {
 }
 
 .money-container {
+  max-height: 100%;
   max-width: 25%;
-  padding-top: 15px;
-  padding-left: 1px;
+  padding: 1px;
 }
 
 .money-list {
   background-color: black;
-  padding: 25px;
+  padding: 10px;
   border-radius: 10px;
   list-style: none;
   display: flex;
@@ -52,8 +56,6 @@ h1 {
 }
 
 .timer {
-  left: 15px;
-  top: 15px;
   width: 80px;
   height: 80px;
   border-radius: 50%;
@@ -175,7 +177,8 @@ h1 {
 }
 
 .lock-in-button:hover,
-.username-button:hover {
+.username-button:hover,
+.lifeline-confirm-cancel-button:hover {
   background: #ca6608;
   box-shadow: 0 0 5px #805404, 0 0 15px #643908, 0 0 25px #e9a456;
 }
@@ -183,11 +186,6 @@ h1 {
 .item.active {
   background: radial-gradient(#ff8800, #863c04);
   box-shadow: 0 0 5px orange, 0 0 25px orange;
-}
-
-.item {
-  padding: 5px;
-  border-radius: 5px;
 }
 
 .money {
@@ -277,10 +275,50 @@ h1 {
   display: block;
 }
 
-.lifelineUsageContainer {
+.lifeline-usage-container {
   display: none;
 }
 
-.lifelineUsageContainer.visible {
+.lifeline-usage-container.visible {
   display: block;
+  position: fixed; /* Position the div relative to the viewport */
+  top: 50%; /* Align the top of the div to the vertical center of the viewport */
+  left: 50%; /* Align the left of the div to the horizontal center of the viewport */
+  transform: translate(-50%, -50%); /* Center the div */
+  width: 50%; /* Take the full width of the viewport */
+  height: 50%; /* Take the full height of the viewport */
+  background: linear-gradient(#260a99, #050a3a);
+  border-radius: 10px;
+  z-index: 9999; /* Set a high z-index value to ensure it's on top */
+}
+
+.lifeline-confirm-cancel-container {
+  margin: 9vh 10vh 9vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lifeline-confirm-cancel-button {
+  width: 45%;
+  max-width: 500px;
+  padding: 10px;
+  margin: 15px;
+  text-align: center;
+  background: linear-gradient(#110447, #091270);
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 60px;
+  font-weight: 500;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.lifelines {
+  display: block;
+  position: fixed; /* Position the div relative to the viewport */
+  top: 10%; /* Align the top of the div to the vertical center of the viewport */
+  left: 45%; /* Align the left of the div to the horizontal center of the viewport */
+  transform: translate(-50%, -50%); /* Center the div */
 }

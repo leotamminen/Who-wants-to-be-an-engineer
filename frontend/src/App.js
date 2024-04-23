@@ -149,21 +149,21 @@ function App() {
                         answersLocked={answersLocked}
                       />
                     </div>
+                    <div className="lifelines">
+                      <Lifelines
+                        isFiftyFiftyUsed={isFiftyFiftyUsed}
+                        isAskFriendUsed={isAskFriendUsed}
+                        isAskAudienceUsed={isAskAudienceUsed}
+                        isAskFriendBoxVisible={isAskFriendBoxVisible}
+                        setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
+                        isAudienceAnswerVisible={isAudienceAnswerVisible}
+                        audienceAnswers={audienceAnswers}
+                        setIsLifelineUsageVisible={setIsLifelineUsageVisible}
+                        setLifeline={setLifeline}
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <Lifelines
-                      isFiftyFiftyUsed={isFiftyFiftyUsed}
-                      isAskFriendUsed={isAskFriendUsed}
-                      isAskAudienceUsed={isAskAudienceUsed}
-                      isAskFriendBoxVisible={isAskFriendBoxVisible}
-                      setIsAskFriendBoxVisible={setIsAskFriendBoxVisible}
-                      isAudienceAnswerVisible={isAudienceAnswerVisible}
-                      audienceAnswers={audienceAnswers}
-                      setIsLifelineUsageVisible={setIsLifelineUsageVisible}
-                      setLifeline={setLifeline}
-                    />
-                  </div>
-                  <div className={isLifelineUsageVisible ? "lifelineUsageContainer visible" : "lifelineUsageContainer"}>
+                  <div className={isLifelineUsageVisible ? "lifeline-usage-container visible" : "lifeline-usage-container"}>
                     <LifelineUsageConfirmation
                       handleLifelineUsageConfirmation={handleLifelineUsageConfirmation}
                       handleLifelineUsageCancel={handleLifelineUsageCancel}
@@ -198,7 +198,7 @@ function App() {
                         <li
                           key={item.id}
                           className={
-                            questionNumber === item.id ? "item active" : "item"
+                            questionNumber === item.id ? "item active" : ""
                           }
                         >
                           <h5 className="amount">{item.amount}</h5>
