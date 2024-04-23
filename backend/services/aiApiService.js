@@ -77,4 +77,31 @@ function validateQuestion(question) {
   return false;
 }
 
-module.exports = { questionGenerator };
+// Function to handle the ask friend lifeline. This will send a user input to AI API
+// and return the answer to it
+const askFriend = async (input) => {
+  const client = new TextServiceClient({
+    authClient: new GoogleAuth().fromAPIKey(config.API_KEY),
+  });
+  // Get random category from categories list
+  const prompt =
+    `Could you answer to the following input and give your output in JSON format like this {"answer": your answer here}. The input: ${input}`;
+  // Return the promise from the client.generateText call
+  return client
+    .generateText({
+      model: MODEL_NAME,
+      prompt: {
+        text: prompt,
+      },
+    })
+    .then((result) => {
+      const output = result[0]?.candidates[0]?.output;
+      if (output !== undefined && output !== null && output !== '') {
+        const jsonContent = output.replace(/^```(?:json\s*)?|\s*```$/g, '');
+        const jsonObject = JSON.parse(jsonContent);
+        return jsonObject;
+      }
+    });
+};
+
+module.exports = { questionGenerator, askFriend };
