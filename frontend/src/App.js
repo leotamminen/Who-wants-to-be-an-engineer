@@ -8,7 +8,7 @@ import Timer from "./components/Timer";
 import { studyPoints, questions } from "./questions";
 import Start from "./components/Start";
 import Lifelines from "./components/Lifelines";
-import About from "./components/About"; // Import the About component
+import About from "./components/About";
 
 import apiQuestionService from "./services/apiQuestionService";
 import dbQuestionService from "./services/dbQuestionService";
